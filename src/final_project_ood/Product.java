@@ -1,7 +1,5 @@
 package final_project_ood;
 
-import java.util.LinkedHashSet;
-
 public abstract class Product {
 	protected String product_name;
 	protected int cost_price;
@@ -10,7 +8,6 @@ public abstract class Product {
 	protected int profit;
 	protected String catalog_number;
 	protected int product_weight;
-	protected LinkedHashSet<Order> allOrders;
 
 	public Product(String name, int cost_price, int selling_price, String catalog_number, int weight) {
 		this.product_name = name;
@@ -20,7 +17,6 @@ public abstract class Product {
 		this.profit = 0;
 		this.catalog_number = catalog_number;
 		this.product_weight = weight;
-		this.allOrders = new LinkedHashSet<Order>();
 
 	}
 
@@ -78,14 +74,6 @@ public abstract class Product {
 	
 	public void setWeight(int weight) {
 		this.product_weight = weight;
-	}
-
-	public LinkedHashSet<Order> getAllOrders() {
-		return allOrders;
-	}
-
-	public void setAllOrders(LinkedHashSet<Order> allOrders) {
-		this.allOrders = allOrders;
 	}
 
 }
