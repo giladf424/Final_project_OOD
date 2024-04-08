@@ -8,8 +8,10 @@ public abstract class Product {
 	protected int profit;
 	protected String catalog_number;
 	protected int product_weight;
+	public enum eCurrency { eNIS, eUSD };
+	protected eCurrency currency;
 
-	public Product(String name, int cost_price, int selling_price, String catalog_number, int weight) {
+	public Product(String name, int cost_price, int selling_price, String catalog_number, int weight, eCurrency currency) {
 		this.product_name = name;
 		this.cost_price = cost_price;
 		this.selling_price = selling_price;
@@ -17,6 +19,7 @@ public abstract class Product {
 		this.profit = 0;
 		this.catalog_number = catalog_number;
 		this.product_weight = weight;
+		this.currency = currency;
 
 	}
 
