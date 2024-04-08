@@ -1,20 +1,20 @@
 package final_project_ood;
 
 public class Customer {
-	private String customer_name;
+	private String customerName;
 	private int mobile;
 	
-	public Customer(String customer_name, int mobile) {
-		this.customer_name = customer_name;
+	public Customer(String customerName, int mobile) {
+		this.customerName = customerName;
 		this.mobile = mobile;
 	}
 
-	public String getCustomer_name() {
-		return customer_name;
+	public String getCustomerName() {
+		return customerName;
 	}
 
-	public void setCustomer_name(String customer_name) {
-		this.customer_name = customer_name;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 	public int getMobile() {
@@ -24,8 +24,6 @@ public class Customer {
 	public void setMobile(int mobile) {
 		this.mobile = mobile;
 	}
-	
-	//hi gilad
 	
 	
 

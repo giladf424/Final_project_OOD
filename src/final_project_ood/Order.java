@@ -2,12 +2,12 @@ package final_project_ood;
 
 public class Order {
 	private Customer customer;
-	private Product product;
+	private String productID;
 	private int quantity;
 	
-	public Order(Customer customer, Product product, int quantity) {
+	public Order(Customer customer, String productID, int quantity) {
 		this.customer = customer;
-		this.product = product;
+		this.productID = productID;
 		this.quantity = quantity;
 	}
 
@@ -19,12 +19,12 @@ public class Order {
 		this.customer = customer;
 	}
 
-	public Product getProduct() {
-		return product;
+	public String getProductID() {
+		return productID;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProductID(String productID) {
+		this.productID = productID;
 	}
 
 	public int getQuantity() {
