@@ -17,11 +17,47 @@ public class ShippingManager implements Listener {
 	}
 	
 	//add method , to add a new shipping company.
+	public boolean addShippingCompany(ShippingService company) {
+		return companies.add(company);
+	}
 	
 	// get the cheapest standard shipping cost
+	public CheapestShippingService getCheapestStandardShipping(ProductWebsite product) {
+		double min = 0;
+		String ID =null;
+		for (ShippingService company : companies) {
+			double tmp =company.calculateStandardtShippingFees(product);
+			double firstTmp = tmp;
+			if(firstTmp > min) {
+				min = tmp;
+				ID = company.ID;
+			}
+			if(tmp < min) {
+				min = tmp;
+				ID = company.ID;
+			}
+		}
+		return new CheapestShippingService(min, ID);
+	}
 	
 	// get the cheapest express shipping cost
-	
+	public CheapestShippingService getCheapestExpressShipping(ProductWebsite product) {
+		double min = 0;
+		String ID =null;
+		for (ShippingService company : companies) {
+			double tmp =company.calculateStandardtShippingFees(product);
+			double firstTmp = tmp;
+			if(firstTmp > min) {
+				min = tmp;
+				ID = company.ID;
+			}
+			if(tmp < min) {
+				min = tmp;
+				ID = company.ID;
+			}
+		}
+		return new CheapestShippingService(min, ID);
+	}
 	
 
 }

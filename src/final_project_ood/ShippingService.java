@@ -3,10 +3,12 @@ package final_project_ood;
 public abstract class ShippingService {
 	protected String contact;
 	protected int phoneNumber;
+	protected String ID;
 	
-	protected ShippingService(String contact, int phoneNumber) {
+	protected ShippingService(String contact, int phoneNumber, String Id) {
 		this.contact = contact;
 		this.phoneNumber = phoneNumber;
+		this.ID = ID;
 	}
 
 	public String getContact() {
@@ -25,7 +27,13 @@ public abstract class ShippingService {
 		this.phoneNumber = phoneNumber;
 	}
 	
-	// 
+	public String getID() {
+		return ID;
+	}
+	
+	public void setID(String ID) {
+		this.ID = ID;
+	}
 	
 	public abstract double calculateStandardtShippingFees(ProductWebsite product);
 	
