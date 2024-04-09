@@ -27,9 +27,13 @@ public abstract class ShippingService {
 	
 	// 
 	
-	public abstract int calculateStandardtShippingFees(ProductWebsite product);
+	public abstract double calculateStandardtShippingFees(ProductWebsite product);
 	
-	public abstract int calculateExpresstShippingFees(ProductWebsite product);
+	public abstract double calculateExpresstShippingFees(ProductWebsite product);
+	
+	public double calculateImportTax(String destCountry) {
+		return 20;
+	}
 	
 
 }

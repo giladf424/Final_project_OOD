@@ -1,7 +1,7 @@
 package final_project_ood;
 
 public class ProductWebsite extends Product {
-	public static final double exchangeRate = 4.0;
+	public final double exchangeRate = 4.0;
 	private boolean regularShippingSupport;
 	private boolean expressShippingSupport;
 	private String destCountry;
