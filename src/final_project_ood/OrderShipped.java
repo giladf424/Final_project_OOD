@@ -3,23 +3,23 @@ package final_project_ood;
 import final_project_ood.ShippingManager.eShippingType;
 
 public class OrderShipped extends Order{
-	private String shippingServiceId;
+	private ShippingService shippingService;
 	private double shippingFees;
 	private eShippingType shippingType;
 	
-	public OrderShipped(String orderID, Customer customer, String productID, int quantity, eShippingType type, double shippingFees, String shippingServiceID) {
+	public OrderShipped(String orderID, Customer customer, String productID, int quantity, eShippingType type, double shippingFees, ShippingService shippingService) {
 		super(orderID, customer, productID, quantity);
 		this.shippingType = type;
 		this.shippingFees = shippingFees;
-		this.shippingServiceId = shippingServiceID;
+		this.shippingService = shippingService;
 	}
 
-	public String getShippingServiceId() {
-		return shippingServiceId;
+	public ShippingService getShippingServiceId() {
+		return shippingService;
 	}
 
-	public void setShippingServiceId(String shippingServiceId) {
-		this.shippingServiceId = shippingServiceId;
+	public void setShippingServiceId(ShippingService shippingService) {
+		this.shippingService = shippingService;
 	}
 
 	public double getShippingFees() {

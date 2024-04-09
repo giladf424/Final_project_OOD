@@ -34,14 +34,15 @@ public class CreateOrderCommand extends Publisher implements ICommand{
 		else {
 			eShippingType shippingType = getShippingType(product);
 			CheapestShippingService cheapestShipping = notifyShipping((ProductWebsite)product, shippingType);
-			OrderShipped newOrder = Store.getStoreInstance().getOrderManager().createOrder(orderID, customer, product.getProductID(), quantity, shippingType, cheapestShipping.getPrice(), cheapestShipping.getID());
+			OrderShipped newOrder = Store.getStoreInstance().getOrderManager().createOrder(orderID, customer, product.getProductID(), quantity,
+					shippingType, cheapestShipping.getPrice(), cheapestShipping.getShippingService());
 		}
 	}
 	
 	private eShippingType getShippingType(Product product) {
 		ProductWebsite webProduct = (ProductWebsite)product;
 		System.out.println("This product supports the following shipping types:");
-		for(int i = 0; i < eShippingType.eNofTypes.ordinal(); i++) {
+		for(int i = 0; i < eShippingType.NofTypes.ordinal(); i++) {
 			System.out.print("" + eShippingType.values()[i] + " shipping: ");
 			if(!webProduct.getSupportedShippings()[i]) {
 				System.out.println("not ");
@@ -49,7 +50,7 @@ public class CreateOrderCommand extends Publisher implements ICommand{
 			System.out.println("supported.");
 		}
 		System.out.println();
-		eShippingType type = eShippingType.eStandard;
+		eShippingType type = eShippingType.Standard;
 		boolean typeChosen;
 		do {
 			typeChosen = true;

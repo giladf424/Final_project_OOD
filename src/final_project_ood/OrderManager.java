@@ -19,8 +19,8 @@ public class OrderManager {
 		return newOrder;
 	}
 	
-	public OrderShipped createOrder(String orderID, Customer customer, String productID, int quantity, eShippingType type, double shippingFee, String shippingServiceID) {
-		OrderShipped newOrder = new OrderShipped(orderID, customer, productID, quantity, type, shippingFee, shippingServiceID);
+	public OrderShipped createOrder(String orderID, Customer customer, String productID, int quantity, eShippingType type, double shippingFee, ShippingService shippingService) {
+		OrderShipped newOrder = new OrderShipped(orderID, customer, productID, quantity, type, shippingFee, shippingService);
 		this.allOrders.add(newOrder);
 		return newOrder;
 	}
