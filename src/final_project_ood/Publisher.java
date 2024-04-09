@@ -1,5 +1,7 @@
 package final_project_ood;
 
+import final_project_ood.ShippingManager.eShippingType;
+
 public abstract class Publisher {
 	private Listener shippingManager;
 	
@@ -7,7 +9,7 @@ public abstract class Publisher {
 		this.shippingManager = Store.getStoreInstance().getShippingManager();
 	}
 	
-	public void notifyShipping() {
-		this.shippingManager.update();
+	public CheapestShippingService notifyShipping(ProductWebsite product, eShippingType type) {
+		return this.shippingManager.update(type, product);
 	}
 }

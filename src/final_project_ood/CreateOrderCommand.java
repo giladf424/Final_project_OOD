@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import final_project_ood.ShippingManager.eShippingType;
 
-public class CreateOrderCommand implements ICommand{
+public class CreateOrderCommand extends Publisher implements ICommand{
 	private Scanner input;
 	public static final int WEBSITE_PRODUCTS = 1;
 	public static final int STORE_PRODUCTS = 2;
@@ -32,6 +32,7 @@ public class CreateOrderCommand implements ICommand{
 		}
 		else {
 			eShippingType shippingType = getShippingType(product);
+			notifyShipping((ProductWebsite)product, shippingType);
 		}
 	}
 	
