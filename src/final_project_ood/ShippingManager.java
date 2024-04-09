@@ -12,7 +12,7 @@ public class ShippingManager implements Listener {
 	}
 
 	@Override
-	public void update() {
+	public void update(eShippingType type, ProductWebsite product) {
 		
 	}
 	
@@ -23,8 +23,8 @@ public class ShippingManager implements Listener {
 	
 	// get the cheapest standard shipping cost
 	public CheapestShippingService getCheapestStandardShipping(ProductWebsite product) {
+		
 		double min = 0;
-		String ID =null;
 		for (ShippingService company : companies) {
 			double tmp =company.calculateStandardtShippingFees(product);
 			double firstTmp = tmp;
@@ -45,7 +45,7 @@ public class ShippingManager implements Listener {
 		double min = 0;
 		String ID =null;
 		for (ShippingService company : companies) {
-			double tmp =company.calculateStandardtShippingFees(product);
+			double tmp =company.calculateExpresstShippingFees(product);
 			double firstTmp = tmp;
 			if(firstTmp > min) {
 				min = tmp;

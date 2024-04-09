@@ -2,8 +2,8 @@ package final_project_ood;
 
 public class FedEx extends ShippingService {
 
-	protected FedEx(String contact, int phoneNumber, String ID) {
-		super(contact, phoneNumber, ID);
+	protected FedEx(String contact, int phoneNumber) {
+		super(contact, phoneNumber);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -2,8 +2,8 @@ package final_project_ood;
 
 public class DHL extends ShippingService{
 
-	protected DHL(String contact, int phoneNumber, String ID) {
-		super(contact, phoneNumber, ID);
+	protected DHL(String contact, int phoneNumber) {
+		super(contact, phoneNumber);
 	}
 
 	@Override
