@@ -2,12 +2,12 @@ package final_project_ood;
 
 public class CheapestShippingService {
 	private double price;
-	private String ID;
+	private ShippingService company;
 	
 	
-	public CheapestShippingService(double price, String iD) {
+	public CheapestShippingService(double price, ShippingService company) {
 		this.price = price;
-		this.ID = iD;
+		this.company = company;
 	}
 
 
@@ -15,8 +15,8 @@ public class CheapestShippingService {
 		return price;
 	}
 
-	public String getID() {
-		return ID;
+	public ShippingService getShippingService () {
+		return company;
 	}
 	
 

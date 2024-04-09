@@ -1,10 +1,11 @@
 package final_project_ood;
 
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class ShippingManager implements Listener {
 	private HashSet<ShippingService> companies;
-	public enum eShippingType { eStandard, eExpress, eNofTypes }
+	public enum eShippingType { Standard, Express, NofTypes };
 	
 
 	public ShippingManager() {
@@ -12,7 +13,15 @@ public class ShippingManager implements Listener {
 	}
 
 	@Override
-	public void update(eShippingType type, ProductWebsite product) {
+	public CheapestShippingService update(eShippingType type, ProductWebsite product) {
+		CheapestShippingService cheapest = null;
+		eShippingType[] shippingType = eShippingType.values();
+		if(type == shippingType[0]) {
+			cheapest = getCheapestStandardShipping(product);
+		}else if(type == shippingType[1]) {
+			cheapest = getCheapestExpressShipping(product);
+		}
+		return cheapest;
 		
 	}
 	
@@ -23,40 +32,32 @@ public class ShippingManager implements Listener {
 	
 	// get the cheapest standard shipping cost
 	public CheapestShippingService getCheapestStandardShipping(ProductWebsite product) {
-		
-		double min = 0;
+		Iterator<ShippingService> shippingIt = companies.iterator();
+		ShippingService cheapest = shippingIt.next();
+		double min = cheapest.calculateStandardtShippingFees(product);
 		for (ShippingService company : companies) {
 			double tmp =company.calculateStandardtShippingFees(product);
-			double firstTmp = tmp;
-			if(firstTmp > min) {
-				min = tmp;
-				ID = company.ID;
-			}
 			if(tmp < min) {
 				min = tmp;
-				ID = company.ID;
+				cheapest = company;
 			}
 		}
-		return new CheapestShippingService(min, ID);
+		return new CheapestShippingService(min, cheapest);
 	}
 	
 	// get the cheapest express shipping cost
 	public CheapestShippingService getCheapestExpressShipping(ProductWebsite product) {
-		double min = 0;
-		String ID =null;
+		Iterator<ShippingService> shippingIt = companies.iterator();
+		ShippingService cheapest = shippingIt.next();
+		double min = cheapest.calculateExpresstShippingFees(product);
 		for (ShippingService company : companies) {
 			double tmp =company.calculateExpresstShippingFees(product);
-			double firstTmp = tmp;
-			if(firstTmp > min) {
-				min = tmp;
-				ID = company.ID;
-			}
 			if(tmp < min) {
 				min = tmp;
-				ID = company.ID;
+				cheapest = company;
 			}
 		}
-		return new CheapestShippingService(min, ID);
+		return new CheapestShippingService(min, cheapest);
 	}
 	
 
