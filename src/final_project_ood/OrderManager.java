@@ -3,6 +3,8 @@ package final_project_ood;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 
+import final_project_ood.ShippingManager.eShippingType;
+
 public class OrderManager {
 	private LinkedHashSet<Order> allOrders;
 
@@ -17,8 +19,11 @@ public class OrderManager {
 		return newOrder;
 	}
 	
-	
-// updateShippingForOrder ( adding the shipping service and shipping fees to the last order who created)
+	public OrderShipped createOrder(String orderID, Customer customer, String productID, int quantity, eShippingType type, double shippingFee, String shippingServiceID) {
+		OrderShipped newOrder = new OrderShipped(orderID, customer, productID, quantity, type, shippingFee, shippingServiceID);
+		this.allOrders.add(newOrder);
+		return newOrder;
+	}
 	
 	public boolean doesOrderExist(String orderID) {
 		for (Iterator iterator = allOrders.iterator(); iterator.hasNext();) {

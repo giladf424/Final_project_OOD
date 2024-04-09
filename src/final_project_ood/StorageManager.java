@@ -69,6 +69,9 @@ public class StorageManager {
 		product.setStock(newStock);
 	}
 	
+	public void addOrderToProduct(Product product, String orderID) {
+		product.getProductOrdersID().add(orderID);
+	}
 	// enableDisableProduct (this will implement action 4.3 in the menu to remove product)
 	
 	// addProduct ( add a product to list , if the product exists but disable we will enable it)

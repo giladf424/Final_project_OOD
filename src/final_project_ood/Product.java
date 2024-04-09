@@ -81,6 +81,9 @@ public abstract class Product {
 		this.productWeight = weight;
 	}
 
+	public LinkedHashSet<String> getProductOrdersID(){
+		return this.productOrdersID;
+	}
 	@Override
 	public String toString() {
 		StringBuffer productDesc = new StringBuffer();
