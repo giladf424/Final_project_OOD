@@ -2,6 +2,8 @@ package final_project_ood;
 
 import java.util.Scanner;
 
+import final_project_ood.ShippingManager.eShippingType;
+
 public class CreateOrderCommand implements ICommand{
 	private Scanner input;
 	public static final int WEBSITE_PRODUCTS = 1;
@@ -18,9 +20,24 @@ public class CreateOrderCommand implements ICommand{
 		if(orderID.equals(null))
 			return;
 		Customer customer = getCustomerInfo();
-		String productID = getProductID();
+		Product product = getProduct();
 		int quantity = getQuantity();
-		Order newOrder = Store.getStoreInstance().getOrderManager().createOrder(orderID, customer, productID, quantity);
+		if(product.getStock() < quantity) {
+			System.out.println("These isn't enough of " + product.getProductName() + " in stock to make that order.");
+			return;
+		}
+		Store.getStoreInstance().getStorageManager().updateQuantity(product, quantity);
+		if(!(product instanceof ProductWebsite)) {
+			Order newOrder = Store.getStoreInstance().getOrderManager().createOrder(orderID, customer, product.getProductID(), quantity);
+		}
+		else {
+			eShippingType shippingType = getShippingType(product);
+		}
+	}
+	
+	private eShippingType getShippingType(Product product) {
+		System.out.println("This product supports the following shipping types:");
+		return eShippingType.eStandard;
 	}
 	
 	private String getOrederID() {
@@ -46,13 +63,14 @@ public class CreateOrderCommand implements ICommand{
 		return customer;
 	}
 
-	private String getProductID() {
+	private Product getProduct() {
 		String productID;
+		Product requestedProduct;
 		do {
 			int requestedType = printProductsOfType();
 			System.out.println("Enter product ID:");
 			productID = this.input.nextLine();
-			Product requestedProduct = Store.getStoreInstance().getStorageManager().getProductByID(productID);
+			requestedProduct = Store.getStoreInstance().getStorageManager().getProductByID(productID);
 			if(requestedProduct == null){
 				System.out.println("No product with this ID.");
 			}
@@ -79,7 +97,7 @@ public class CreateOrderCommand implements ICommand{
 				}
 			}
 		}while(productID == null);
-		return productID;
+		return requestedProduct;
 	}
 	
 	private int printProductsOfType() {

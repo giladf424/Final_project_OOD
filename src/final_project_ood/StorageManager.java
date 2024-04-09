@@ -64,6 +64,10 @@ public class StorageManager {
 	}
 	
 	// updateQuantity (product)
+	public void updateQuantity(Product product, int quantity) {
+		int newStock = product.getStock() - quantity;
+		product.setStock(newStock);
+	}
 	
 	// enableDisableProduct (this will implement action 4.3 in the menu to remove product)
 	
