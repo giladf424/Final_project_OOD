@@ -81,4 +81,10 @@ public abstract class Product {
 		this.productWeight = weight;
 	}
 
+	@Override
+	public String toString() {
+		StringBuffer productDesc = new StringBuffer();
+		productDesc.append(this.productName + "\n" + this.productID + "\n" + this.sellingPrice + "\n" + this.stock);
+		return productDesc.toString();
+	}
 }
