@@ -36,8 +36,28 @@ public class CreateOrderCommand implements ICommand{
 	}
 	
 	private eShippingType getShippingType(Product product) {
+		ProductWebsite webProduct = (ProductWebsite)product;
 		System.out.println("This product supports the following shipping types:");
-		return eShippingType.eStandard;
+		for(int i = 0; i < eShippingType.eNofTypes.ordinal(); i++) {
+			System.out.print("" + eShippingType.values()[i] + " shipping: ");
+			if(webProduct.getSupportedShippings()[i]) {
+				System.out.println("supported.");
+			}
+		}
+		System.out.println();
+		eShippingType type = eShippingType.eStandard;
+		boolean typeChosen;
+		do {
+			typeChosen = true;
+			System.out.println("Choose desired shipping type:");
+			try {
+				type = eShippingType.valueOf(this.input.next());
+			} catch (Exception e) {
+				System.out.println("Unknown shipping type.");
+				typeChosen = false;
+			}
+		}while(typeChosen == false);
+		return type;
 	}
 	
 	private String getOrederID() {
