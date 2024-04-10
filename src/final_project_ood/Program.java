@@ -36,7 +36,7 @@ public class Program {
 		return type;
 	}
 	
-	public static String getOrederID() {
+	public static String getOrderID() {
 		String orderID;
 		System.out.println("Enter order ID:");
 		do {
@@ -137,8 +137,8 @@ public class Program {
 
 
 	public static void main(String[] args) {
-		CreateOrderCommand cmd = new CreateOrderCommand(getOrederID(), getCustomerInfo(), getProduct(), STORE_PRODUCTS, null);
-		cmd.setOrderID(getOrederID());
+		CreateOrderCommand cmd = new CreateOrderCommand(getOrderID(), getCustomerInfo(), getProduct(), STORE_PRODUCTS, null);
+		cmd.setOrderID(getOrderID());
 	}
 
 }
