@@ -7,4 +7,11 @@ public class ProductWholesalers extends Product{
 		this.currency = eCurrency.NIS;
 	}
 
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+	
+	
+
 }

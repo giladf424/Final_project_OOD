@@ -8,7 +8,7 @@ public class DHL extends ShippingService{
 
 	@Override
 	public double calculateStandardtShippingFees(ProductWebsite product) {
-		double shippingFees = product.sellingPrice * product.exchangeRate;
+		double shippingFees = product.sellingPrice;
 		if (shippingFees >= 1000) {
 			shippingFees = 100;
 		} else

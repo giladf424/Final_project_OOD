@@ -6,5 +6,11 @@ public class ProductInStore extends Product{
 		super(name, costPrice, sellingPrice, productID, weight);
 		this.currency = eCurrency.NIS;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 
 }

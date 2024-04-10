@@ -43,6 +43,22 @@ public class ProductWebsite extends Product {
 	public boolean[] getSupportedShippings() {
 		return this.shippingSupport;
 	}
+
+	@Override
+	public String toString() {
+		StringBuffer productDesc = new StringBuffer();
+		productDesc.append("Destination: " + destCountry);
+		for(int i = 0; i < eShippingType.NofTypes.ordinal(); i++) {
+			productDesc.append("\t" + eShippingType.values()[i] + " shipping: ");
+			if(!shippingSupport[i]) {
+				productDesc.append("not ");
+			}
+			productDesc.append("supported.");
+		}
+		return super.toString() + productDesc.toString();
+	}
+	
+	
 	
 
 }
