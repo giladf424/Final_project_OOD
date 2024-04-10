@@ -67,11 +67,11 @@ public class CreateOrderCommand extends Informer implements ICommand{
 		Store.getStoreInstance().getStorageManager().updateQuantity(this.product, this.quantity);
 		Store.getStoreInstance().getStorageManager().addOrderToProduct(this.product, this.orderID);
 		if(!(product instanceof ProductWebsite)) {
-			Store.getStoreInstance().getOrderManager().createOrder(this.orderID, this.customer, this.product.getProductID(), this.quantity);
+			Store.getStoreInstance().getOrderManager().createOrder(this.orderID, this.customer, this.product, this.quantity);
 		}
 		else {
 			CheapestShippingService cheapestShipping = inform((ProductWebsite)product, this.shippingType);
-			Store.getStoreInstance().getOrderManager().createOrder(this.orderID, this.customer, this.product.getProductID(), this.quantity,
+			Store.getStoreInstance().getOrderManager().createOrder(this.orderID, this.customer, this.product, this.quantity,
 					this.shippingType, cheapestShipping.getPrice(), cheapestShipping.getShippingService());
 		}
 	}

@@ -13,20 +13,26 @@ public class OrderManager {
 	}
 	
 // create new order ( gets user input , need to add the order to the list of all orders and the id to product list)
-	public OrderStore createOrder(String orderID, Customer customer, String productID, int quantity) {
-		OrderStore newOrder = new OrderStore(orderID, customer, productID, quantity);
+	public OrderStore createOrder(String orderID, Customer customer, Product product, int quantity) {
+		OrderStore newOrder = new OrderStore(orderID, customer, product, quantity);
 		this.allOrders.add(newOrder);
 		return newOrder;
 	}
 	
-	public OrderShipped createOrder(String orderID, Customer customer, String productID, int quantity, eShippingType type, double shippingFee, ShippingService shippingService) {
-		OrderShipped newOrder = new OrderShipped(orderID, customer, productID, quantity, type, shippingFee, shippingService);
+	public OrderShipped createOrder(String orderID, Customer customer, Product product, int quantity, eShippingType type, double shippingFee, ShippingService shippingService) {
+		OrderShipped newOrder = new OrderShipped(orderID, customer, product, quantity, type, shippingFee, shippingService);
+		this.allOrders.add(newOrder);
+		return newOrder;
+	}
+	
+	public OrderWholeSaler createOrder(String orderID, Customer customer, ProductWholesalers product, int quantity) {
+		OrderWholeSaler newOrder = new OrderWholeSaler(orderID, customer, product, quantity);
 		this.allOrders.add(newOrder);
 		return newOrder;
 	}
 	
 	public boolean doesOrderExist(String orderID) {
-		for (Iterator iterator = allOrders.iterator(); iterator.hasNext();) {
+		for (Iterator<Order> iterator = allOrders.iterator(); iterator.hasNext();) {
 			Order order = (Order) iterator.next();
 			if(order.getOrderID().equals(orderID))
 				return true;
