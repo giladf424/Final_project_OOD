@@ -13,6 +13,7 @@ public abstract class Product {
 	public enum eCurrency { eNIS, eUSD };
 	protected eCurrency currency;
 	protected LinkedHashSet<String> productOrdersID;
+	protected boolean isActive;
 
 	public Product(String name, int costPrice, int sellingPrice, String productID, int weight) {
 		this.productName = name;
@@ -23,6 +24,15 @@ public abstract class Product {
 		this.productID = productID;
 		this.productWeight = weight;
 		this.productOrdersID = new LinkedHashSet<>();
+		this.isActive = true;
+	}
+	
+	public boolean getIsActive() {
+		return this.isActive;
+	}
+	
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 
 	public String getProductName() {

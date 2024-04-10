@@ -10,6 +10,7 @@ public class Store {
 	private Store() {
 		this.orderManager = new OrderManager();
 		this.shippingManager = new ShippingManager();
+		this.storageManager = new StorageManager();
 	}
 	
 	public static Store getStoreInstance() {

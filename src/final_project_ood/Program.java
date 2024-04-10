@@ -67,7 +67,7 @@ public class Program {
 			System.out.println("Enter product ID:");
 			productID = input.nextLine();
 			requestedProduct = Store.getStoreInstance().getStorageManager().getProductByID(productID);
-			if(requestedProduct == null){
+			if(requestedProduct == null || !requestedProduct.getIsActive()){
 				System.out.println("No product with this ID.");
 			}
 			else {

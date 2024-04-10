@@ -25,7 +25,7 @@ public class StorageManager {
 		ArrayList<Product> allWebsiteProducts = new ArrayList<>();
 		for (Iterator iterator = allProducts.iterator(); iterator.hasNext();) {
 			Product product = (Product) iterator.next();
-			if(product instanceof ProductWebsite) {
+			if(product instanceof ProductWebsite && product.getIsActive()) {
 				allWebsiteProducts.add(product);
 			}
 		}
@@ -36,7 +36,7 @@ public class StorageManager {
 		ArrayList<Product> allInStoreProducts = new ArrayList<>();
 		for (Iterator iterator = allProducts.iterator(); iterator.hasNext();) {
 			Product product = (Product) iterator.next();
-			if(product instanceof ProductInStore) {
+			if(product instanceof ProductInStore && product.getIsActive()) {
 				allInStoreProducts.add(product);
 			}
 		}
@@ -47,7 +47,7 @@ public class StorageManager {
 		ArrayList<Product> allWholesalersProducts = new ArrayList<>();
 		for (Iterator iterator = allProducts.iterator(); iterator.hasNext();) {
 			Product product = (Product) iterator.next();
-			if(product instanceof ProductWholesalers) {
+			if(product instanceof ProductWholesalers && product.getIsActive()) {
 				allWholesalersProducts.add(product);
 			}
 		}
