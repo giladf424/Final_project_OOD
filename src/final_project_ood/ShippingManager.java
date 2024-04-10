@@ -3,7 +3,7 @@ package final_project_ood;
 import java.util.HashSet;
 import java.util.Iterator;
 
-public class ShippingManager implements Listener {
+public class ShippingManager implements Informed {
 	private HashSet<ShippingService> companies;
 	public enum eShippingType { Standard, Express, NofTypes };
 	
@@ -13,7 +13,7 @@ public class ShippingManager implements Listener {
 	}
 
 	@Override
-	public CheapestShippingService update(eShippingType type, ProductWebsite product) {
+	public CheapestShippingService getInformed(eShippingType type, ProductWebsite product) {
 		CheapestShippingService cheapest = null;
 		eShippingType[] shippingType = eShippingType.values();
 		if(type == shippingType[0]) {

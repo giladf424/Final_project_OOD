@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import final_project_ood.ShippingManager.eShippingType;
 
-public class CreateOrderCommand extends Publisher implements ICommand{
+public class CreateOrderCommand extends Informer implements ICommand{
 	private Scanner input;
 	public static final int WEBSITE_PRODUCTS = 1;
 	public static final int STORE_PRODUCTS = 2;
@@ -33,7 +33,7 @@ public class CreateOrderCommand extends Publisher implements ICommand{
 		}
 		else {
 			eShippingType shippingType = getShippingType(product);
-			CheapestShippingService cheapestShipping = notifyShipping((ProductWebsite)product, shippingType);
+			CheapestShippingService cheapestShipping = inform((ProductWebsite)product, shippingType);
 			OrderShipped newOrder = Store.getStoreInstance().getOrderManager().createOrder(orderID, customer, product.getProductID(), quantity,
 					shippingType, cheapestShipping.getPrice(), cheapestShipping.getShippingService());
 		}
