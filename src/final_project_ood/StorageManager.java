@@ -5,9 +5,65 @@ import java.util.Iterator;
 
 public class StorageManager {
 	private ArrayList<Product> allProducts;
+	private ProductComparator productComparator;
 	
 	public StorageManager() {
 		this.allProducts = new ArrayList<>();
+		this.productComparator = new ProductComparator();
+	}
+	
+	public boolean createProductWebsite(String name, int cost_price, int selling_price, String catalog_number, int weight, boolean regular, boolean express, String dest) {
+		ProductWebsite product = new ProductWebsite(name, cost_price, selling_price, catalog_number, weight, regular, express, dest);
+		if(this.allProducts.contains(product)) {
+			ProductWebsite existingProduct = (ProductWebsite)this.getProductByID(product.productID);
+			existingProduct.setIsActive(true);
+			existingProduct.setProductName(name);
+			existingProduct.setCostPrice(cost_price);
+			existingProduct.setSellingPrice(selling_price);
+			existingProduct.setWeight(weight);
+			existingProduct.setRegularShippingSupport(regular);
+			existingProduct.setExpressShippingSupport(express);
+			existingProduct.setDestCountry(dest);
+		}
+		else {
+			this.allProducts.add(product);
+			this.allProducts.sort(this.productComparator);
+		}
+		return true;
+	}
+	
+	public boolean createProductStore(String name, int costPrice, int sellingPrice, String productID, int weight) {
+		ProductInStore product = new ProductInStore(name, costPrice, sellingPrice, productID, weight);
+		if(this.allProducts.contains(product)) {
+			ProductInStore existingProduct = (ProductInStore)this.getProductByID(product.productID);
+			existingProduct.setIsActive(true);
+			existingProduct.setProductName(name);
+			existingProduct.setCostPrice(costPrice);
+			existingProduct.setSellingPrice(sellingPrice);
+			existingProduct.setWeight(weight);
+		}
+		else {
+			this.allProducts.add(product);
+			this.allProducts.sort(this.productComparator);
+		}
+		return true;
+	}
+	
+	public boolean createProductWholesalers(String name, int costPrice, int sellingPrice, String productID, int weight) {
+		ProductWholesalers product = new ProductWholesalers(name, costPrice, sellingPrice, productID, weight);
+		if(this.allProducts.contains(product)) {
+			ProductWholesalers existingProduct = (ProductWholesalers)this.getProductByID(product.productID);
+			existingProduct.setIsActive(true);
+			existingProduct.setProductName(name);
+			existingProduct.setCostPrice(costPrice);
+			existingProduct.setSellingPrice(sellingPrice);
+			existingProduct.setWeight(weight);
+		}
+		else {
+			this.allProducts.add(product);
+			this.allProducts.sort(this.productComparator);
+		}
+		return true;
 	}
 	
 	public ArrayList<Product> getAllProducts(){

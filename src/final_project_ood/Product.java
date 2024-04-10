@@ -1,6 +1,7 @@
 package final_project_ood;
 
 import java.util.LinkedHashSet;
+import java.util.Objects;
 
 public abstract class Product {
 	protected String productName;
@@ -97,6 +98,23 @@ public abstract class Product {
 
 	public LinkedHashSet<String> getProductOrdersID() {
 		return this.productOrdersID;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(productID);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		return Objects.equals(productID, other.productID);
 	}
 
 	@Override
