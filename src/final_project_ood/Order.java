@@ -1,15 +1,15 @@
 package final_project_ood;
 
-public class Order {
-	private Customer customer;
-	private String productID;
-	private String orderID;
-	private int quantity;
+public abstract class Order {
+	protected Customer customer;
+	protected String productID;
+	protected String orderID;
+	protected int quantity;
 	
-	public Order(String orderID, Customer customer, String productID, int quantity) {
+	public Order(String orderID, Customer customer, Product product, int quantity) {
 		this.orderID = orderID;
 		this.customer = customer;
-		this.productID = productID;
+		this.productID = product.getProductID();
 		this.quantity = quantity;
 	}
 

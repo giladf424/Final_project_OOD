@@ -7,8 +7,8 @@ public class OrderShipped extends Order{
 	private double shippingFees;
 	private eShippingType shippingType;
 	
-	public OrderShipped(String orderID, Customer customer, String productID, int quantity, eShippingType type, double shippingFees, ShippingService shippingService) {
-		super(orderID, customer, productID, quantity);
+	public OrderShipped(String orderID, Customer customer, Product product, int quantity, eShippingType type, double shippingFees, ShippingService shippingService) {
+		super(orderID, customer, product, quantity);
 		this.shippingType = type;
 		this.shippingFees = shippingFees;
 		this.shippingService = shippingService;

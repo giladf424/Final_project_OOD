@@ -13,8 +13,8 @@ public class OrderManager {
 	}
 	
 // create new order ( gets user input , need to add the order to the list of all orders and the id to product list)
-	public Order createOrder(String orderID, Customer customer, String productID, int quantity) {
-		Order newOrder = new Order(orderID, customer, productID, quantity);
+	public OrderStore createOrder(String orderID, Customer customer, String productID, int quantity) {
+		OrderStore newOrder = new OrderStore(orderID, customer, productID, quantity);
 		this.allOrders.add(newOrder);
 		return newOrder;
 	}
