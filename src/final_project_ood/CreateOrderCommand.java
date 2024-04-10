@@ -4,6 +4,8 @@ package final_project_ood;
 import final_project_ood.ShippingManager.eShippingType;
 
 public class CreateOrderCommand extends Informer implements ICommand{
+	private StorageManager storageManager;
+	private OrderManager orderManager;
 	private String orderID;
 	private Customer customer;
 	private Product product;
@@ -15,6 +17,8 @@ public class CreateOrderCommand extends Informer implements ICommand{
 	protected CreateOrderCommand(String orderID, Customer customer, Product product, int quantity,
 			eShippingType shippingType) {
 		super();
+		this.storageManager = Store.getStoreInstance().getStorageManager();
+		this.orderManager = Store.getStoreInstance().getOrderManager();
 		this.orderID = orderID;
 		this.customer = customer;
 		this.product = product;
@@ -64,14 +68,14 @@ public class CreateOrderCommand extends Informer implements ICommand{
 
 	@Override
 	public void execute() {
-		Store.getStoreInstance().getStorageManager().updateQuantity(this.product, this.quantity);
-		Store.getStoreInstance().getStorageManager().addOrderToProduct(this.product, this.orderID);
+		this.storageManager.updateQuantity(this.product, this.quantity);
+		this.storageManager.addOrderToProduct(this.product, this.orderID);
 		if(!(product instanceof ProductWebsite)) {
-			Store.getStoreInstance().getOrderManager().createOrder(this.orderID, this.customer, this.product, this.quantity);
+			this.orderManager.createOrder(this.orderID, this.customer, this.product, this.quantity);
 		}
 		else {
 			CheapestShippingService cheapestShipping = inform((ProductWebsite)product, this.shippingType);
-			Store.getStoreInstance().getOrderManager().createOrder(this.orderID, this.customer, this.product, this.quantity,
+			this.orderManager.createOrder(this.orderID, this.customer, this.product, this.quantity,
 					this.shippingType, cheapestShipping.getPrice(), cheapestShipping.getShippingService());
 		}
 	}
