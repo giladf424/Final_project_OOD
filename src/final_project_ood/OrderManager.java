@@ -31,6 +31,14 @@ public class OrderManager {
 		return newOrder;
 	}
 	
+	public void removeLastOrder() {
+		Order order = null;
+		for (Iterator<Order> iterator = allOrders.iterator(); iterator.hasNext();) {
+			order = (Order) iterator.next();
+		}
+		this.allOrders.remove(order);
+	}
+	
 	public boolean doesOrderExist(String orderID) {
 		for (Iterator<Order> iterator = allOrders.iterator(); iterator.hasNext();) {
 			Order order = (Order) iterator.next();

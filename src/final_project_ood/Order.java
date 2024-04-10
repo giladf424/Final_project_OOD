@@ -1,5 +1,7 @@
 package final_project_ood;
 
+import java.util.Objects;
+
 public abstract class Order {
 	protected Customer customer;
 	protected String productID;
@@ -43,6 +45,23 @@ public abstract class Order {
 	
 	public void setOrderID(String orderID) {
 		this.orderID = orderID;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(orderID);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Order other = (Order) obj;
+		return Objects.equals(orderID, other.orderID);
 	}
 	
 	

@@ -1,6 +1,7 @@
 package final_project_ood;
 
 import java.util.Scanner;
+import java.util.Stack;
 
 import final_project_ood.ShippingManager.eShippingType;
 
@@ -9,6 +10,7 @@ public class Program {
 	public static final int WEBSITE_PRODUCTS = 1;
 	public static final int STORE_PRODUCTS = 2;
 	public static final int WHOLESALERS_PRODUCTS = 3;
+	private static Stack<CreateOrderCommand> commandStack = new Stack<>();
 	
 	public static eShippingType getShippingType(Product product) {
 		ProductWebsite webProduct = (ProductWebsite)product;
@@ -138,6 +140,8 @@ public class Program {
 
 	public static void main(String[] args) {
 		CreateOrderCommand cmd = new CreateOrderCommand(getOrderID(), getCustomerInfo(), getProduct(), STORE_PRODUCTS, null);
+		commandStack.add(cmd);
+		UndoOrderCommand cmd1 = new UndoOrderCommand(commandStack.pop());
 		cmd.setOrderID(getOrderID());
 	}
 

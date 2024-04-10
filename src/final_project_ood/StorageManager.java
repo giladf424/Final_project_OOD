@@ -69,6 +69,11 @@ public class StorageManager {
 		product.setStock(newStock);
 	}
 	
+	public void addQuantity(Product product, int quantity) {
+		int newStock = product.getStock() + quantity;
+		product.setStock(newStock);
+	}
+	
 	public void addOrderToProduct(Product product, String orderID) {
 		product.getProductOrdersID().add(orderID);
 	}
