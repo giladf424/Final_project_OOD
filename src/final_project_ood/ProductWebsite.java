@@ -13,7 +13,7 @@ public class ProductWebsite extends Product {
 		this.shippingSupport[eShippingType.Standard.ordinal()] = regular;
 		this.shippingSupport[eShippingType.Express.ordinal()] = express;
 		this.destCountry = dest;
-		this.currency = eCurrency.eUSD;
+		this.currency = eCurrency.USD;
 	}
 
 	public boolean isRegularShippingSupport() {

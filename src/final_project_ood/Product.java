@@ -10,7 +10,7 @@ public abstract class Product {
 	protected int profit;
 	protected String productID;
 	protected int productWeight;
-	public enum eCurrency { eNIS, eUSD };
+	public enum eCurrency { NIS, USD };
 	protected eCurrency currency;
 	protected LinkedHashSet<String> productOrdersID;
 	protected boolean isActive;

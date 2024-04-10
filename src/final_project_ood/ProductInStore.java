@@ -4,7 +4,7 @@ public class ProductInStore extends Product{
 
 	public ProductInStore(String name, int costPrice, int sellingPrice, String productID, int weight) {
 		super(name, costPrice, sellingPrice, productID, weight);
-		this.currency = eCurrency.eNIS;
+		this.currency = eCurrency.NIS;
 	}
 
 }

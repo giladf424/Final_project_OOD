@@ -15,7 +15,7 @@ public class StorageManager {
 	}
 	
 	public void printProducts(ArrayList<Product> products) {
-		for (Iterator iterator = products.iterator(); iterator.hasNext();) {
+		for (Iterator<Product> iterator = products.iterator(); iterator.hasNext();) {
 			Product product = (Product) iterator.next();
 			System.out.println(product.toString());
 		}
@@ -23,7 +23,7 @@ public class StorageManager {
 	
 	public ArrayList<Product> getAllWebsiteProducts(){
 		ArrayList<Product> allWebsiteProducts = new ArrayList<>();
-		for (Iterator iterator = allProducts.iterator(); iterator.hasNext();) {
+		for (Iterator<Product> iterator = allProducts.iterator(); iterator.hasNext();) {
 			Product product = (Product) iterator.next();
 			if(product instanceof ProductWebsite && product.getIsActive()) {
 				allWebsiteProducts.add(product);
@@ -34,7 +34,7 @@ public class StorageManager {
 	
 	public ArrayList<Product> getAllInStoreProducts(){
 		ArrayList<Product> allInStoreProducts = new ArrayList<>();
-		for (Iterator iterator = allProducts.iterator(); iterator.hasNext();) {
+		for (Iterator<Product> iterator = allProducts.iterator(); iterator.hasNext();) {
 			Product product = (Product) iterator.next();
 			if(product instanceof ProductInStore && product.getIsActive()) {
 				allInStoreProducts.add(product);
@@ -45,7 +45,7 @@ public class StorageManager {
 	
 	public ArrayList<Product> getAllWholesalersProducts(){
 		ArrayList<Product> allWholesalersProducts = new ArrayList<>();
-		for (Iterator iterator = allProducts.iterator(); iterator.hasNext();) {
+		for (Iterator<Product> iterator = allProducts.iterator(); iterator.hasNext();) {
 			Product product = (Product) iterator.next();
 			if(product instanceof ProductWholesalers && product.getIsActive()) {
 				allWholesalersProducts.add(product);
@@ -55,7 +55,7 @@ public class StorageManager {
 	}
 	
 	public Product getProductByID(String productID) {
-		for (Iterator iterator = allProducts.iterator(); iterator.hasNext();) {
+		for (Iterator<Product> iterator = allProducts.iterator(); iterator.hasNext();) {
 			Product product = (Product) iterator.next();
 			if(product.getProductID().equals(productID))
 				return product;
@@ -80,6 +80,11 @@ public class StorageManager {
 		product.setIsActive(value);
 	}
 	// addProduct ( add a product to list , if the product exists but disable we will enable it)
+
+	@Override
+	public String toString() {
+		return "StorageManager [allProducts=" + allProducts + "]";
+	}
 	
 	// 
 
