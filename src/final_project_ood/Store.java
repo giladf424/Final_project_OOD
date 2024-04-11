@@ -37,8 +37,8 @@ public class Store {
 		private final StorageManager storageManager;
 		
 		private storeMemento(OrderManager orderManager, ShippingManager shippingManager, StorageManager storageManager) {
-			this.orderManager = new OrderManager();
-			this.shippingManager = new ShippingManager();
+			this.orderManager = orderManager.clone();
+			this.shippingManager = shippingManager.clone();
 			this.storageManager = storageManager.clone();
 		}
 		
