@@ -3,6 +3,7 @@ package final_project_ood;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 
+import final_project_ood.Product.eCurrency;
 import final_project_ood.ShippingManager.eShippingType;
 
 public class OrderManager implements Cloneable {
@@ -56,6 +57,24 @@ public class OrderManager implements Cloneable {
 				return true;
 		}
 		return false;
+	}
+	
+	public Order getOrderByID(String orderID) {
+		for (Order order : allOrders) {
+			if(order.getOrderID().equals(orderID)) {
+				return order;
+			}
+		}
+		return null;
+	}
+	
+	public int calculateOrderProfit(Order order, int sellingPrice, int costPrice, eCurrency currency) {
+		int profit;
+		if(currency == eCurrency.USD) {
+			profit = 4 * order.getQuantity() * (sellingPrice - costPrice);
+		}else
+			profit = order.getQuantity() * (sellingPrice - costPrice);
+		return profit;
 	}
 
 	@Override
