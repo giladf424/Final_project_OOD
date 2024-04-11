@@ -1,6 +1,6 @@
 package final_project_ood;
 
-public abstract class Invoice {
+public abstract class Invoice implements Cloneable{
 	protected String productID;
 	protected String productName;
 	protected int quantity;
@@ -16,4 +16,13 @@ public abstract class Invoice {
 	}
 	
 	public abstract String toString();
+	
+	@Override
+	public Invoice clone() {
+	    try {
+	        return (Invoice) super.clone();
+	    } catch (CloneNotSupportedException e) {
+	            throw new AssertionError();
+	    }
+	}
 }

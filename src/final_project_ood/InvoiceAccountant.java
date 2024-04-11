@@ -1,6 +1,6 @@
 package final_project_ood;
 
-public class InvoiceAccountant extends Invoice{
+public class InvoiceAccountant extends Invoice implements Cloneable {
 	private int costPrice;
 	private double orderProfit;
 
@@ -9,7 +9,7 @@ public class InvoiceAccountant extends Invoice{
 		this.costPrice = costPrice;
 		this.setOrderProfit();
 	}
-	
+
 	private void setOrderProfit() {
 		this.orderProfit = quantity * (sellingPrice - costPrice);
 	}
@@ -17,10 +17,22 @@ public class InvoiceAccountant extends Invoice{
 	@Override
 	public String toString() {
 		StringBuffer invoice = new StringBuffer("Invoice for accountant: \n");
-		invoice.append("ID: " + productID  + "\t" + productName + "\t Price: " + sellingPrice + " X " + quantity + "\n");
+		invoice.append("ID: " + productID + "\t" + productName + "\t Price: " + sellingPrice + " X " + quantity + "\n");
 		invoice.append("Total: " + orderCost + "\t Store Profit: " + orderProfit);
 		return invoice.toString();
 	}
 
-	
+	@Override
+	public InvoiceAccountant clone() {
+		try {
+			InvoiceAccountant clonedInvoice = (InvoiceAccountant) super.clone();
+			// Perform deep copy of attributes
+			clonedInvoice.costPrice = this.costPrice;
+			clonedInvoice.orderProfit = this.orderProfit;
+			return clonedInvoice;
+		} catch (Exception e) {
+			throw new AssertionError(); // Can't happen
+		}
+	}
+
 }

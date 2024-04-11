@@ -2,7 +2,7 @@ package final_project_ood;
 
 import final_project_ood.ShippingManager.eShippingType;
 
-public class OrderShipped extends Order {
+public class OrderShipped extends Order implements Cloneable {
 	private ShippingService shippingService;
 	private double shippingFees;
 	private eShippingType shippingType;
@@ -47,6 +47,19 @@ public class OrderShipped extends Order {
 						+ shippingType.name() + "\t Cost: " + shippingFees + "\n")
 				.append("Contact: " + shippingService.contact + "\t WhatsApp: " + shippingService.phoneNumber);
 		return super.toString() + orderDesc.toString();
+	}
+
+	@Override
+	public OrderShipped clone() {
+		try {
+			OrderShipped clonedOrder = (OrderShipped) super.clone();
+			clonedOrder.shippingFees = this.shippingFees;
+			clonedOrder.shippingType = this.shippingType;
+			clonedOrder.shippingService = this.shippingService.clone();
+			return clonedOrder;
+		} catch (Exception e) {
+			throw new AssertionError();
+		}
 	}
 
 }
