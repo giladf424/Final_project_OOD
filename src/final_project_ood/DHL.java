@@ -1,6 +1,6 @@
 package final_project_ood;
 
-public class DHL extends ShippingService{
+public class DHL extends ShippingService implements Cloneable {
 
 	protected DHL(String contact, int phoneNumber) {
 		super(contact, phoneNumber);
@@ -18,8 +18,17 @@ public class DHL extends ShippingService{
 
 	@Override
 	public double calculateExpressShippingFees(ProductWebsite product) {
-		
+
 		return 100 + calculateImportTax(product.getDestCountry());
+	}
+
+	@Override
+	public DHL clone() {
+		try {
+			return (DHL) super.clone();
+		} catch (Exception e) {
+			throw new AssertionError();
+		}
 	}
 
 }

@@ -1,6 +1,6 @@
 package final_project_ood;
 
-public class OrderStore extends Order{
+public class OrderStore extends Order implements Cloneable{
 	private InvoiceCustomer invoiceCustomer;
 	private InvoiceAccountant invoiceAccountant;
 
@@ -22,5 +22,17 @@ public class OrderStore extends Order{
 	public String toString() {
 		return super.toString() + invoiceCustomer.toString() + "\n" + invoiceAccountant.toString();
 	}
+	
+	@Override
+    public OrderStore clone() {
+        try {
+        	OrderStore clonedOrder = (OrderStore) super.clone();
+        	clonedOrder.invoiceCustomer = this.invoiceCustomer.clone();
+            clonedOrder.invoiceAccountant = this.invoiceAccountant.clone();
+            return clonedOrder;
+        } catch (Exception e) {
+            throw new AssertionError(); 
+        }
+    }
 
 }

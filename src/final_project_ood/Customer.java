@@ -1,9 +1,9 @@
 package final_project_ood;
 
-public class Customer {
+public class Customer implements Cloneable {
 	private String customerName;
 	private int mobile;
-	
+
 	public Customer(String customerName, int mobile) {
 		this.customerName = customerName;
 		this.mobile = mobile;
@@ -31,9 +31,14 @@ public class Customer {
 		customerDesc.append("Customer name: " + this.customerName + "\t mobile: " + this.mobile + "\n");
 		return customerDesc.toString();
 	}
-	
-	
-	
-	
-	//mey
+
+	@Override
+	public Customer clone() {
+		try {
+			return (Customer) super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new AssertionError();
+		}
+	}
+
 }

@@ -2,7 +2,7 @@ package final_project_ood;
 
 import java.util.Objects;
 
-public abstract class Order {
+public abstract class Order implements Cloneable{
 	protected Customer customer;
 	protected String productID;
 	protected String orderID;
@@ -71,6 +71,17 @@ public abstract class Order {
 		return orderDesc.toString() + customer.toString();
 	}
 	
+	
+	@Override
+    public Order clone() {
+        try {
+            Order clonedOrder = (Order) super.clone();
+            clonedOrder.customer = this.customer.clone();
+            return clonedOrder;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(); 
+        }
+    }
 	
 
 }
