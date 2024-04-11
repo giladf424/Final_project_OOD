@@ -47,7 +47,7 @@ public class CreateProductCommand implements ICommand{
 			System.out.println("Improper product name or ID.");
 			return;
 		}
-		if(this.storageManager.getProductByID(this.productID) != null) {
+		if(this.storageManager.getProductByID(this.productID) != null && this.storageManager.getProductByID(this.productID).getIsActive()) {
 			System.out.println("This product ID is already taken.");
 			return;
 		}

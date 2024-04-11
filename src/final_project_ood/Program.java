@@ -219,7 +219,6 @@ public class Program {
 		else {
 			cmdCreateProduct = new CreateProductCommand(productType, getProductName(), getCostPrice(), getSellingPrice(), getProductID(), getWeight());
 		}
-		cmd.setOrderID(getOrderID());
 	}
 
 }
