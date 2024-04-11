@@ -17,5 +17,9 @@ public class OrderStore extends Order{
 	public InvoiceAccountant getInvoiceAccountant() {
 		return this.invoiceAccountant;
 	}
+	
+	public String toString() {
+		return super.toString() + invoiceCustomer.toString() + "\n" + invoiceAccountant.toString();
+	}
 
 }

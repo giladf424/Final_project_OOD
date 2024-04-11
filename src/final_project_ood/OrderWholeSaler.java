@@ -15,7 +15,7 @@ public class OrderWholeSaler extends Order{
 
 	@Override
 	public String toString() {
-		return super.toString() + invoiceAccountant + "]";
+		return super.toString() + invoiceAccountant.toString();
 	}
 	
 	
