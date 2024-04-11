@@ -3,7 +3,7 @@ package final_project_ood;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 
-public abstract class Product {
+public abstract class Product implements Cloneable{
 	protected String productName;
 	protected int costPrice;
 	protected int sellingPrice;
@@ -103,6 +103,17 @@ public abstract class Product {
 
 	public LinkedHashSet<String> getProductOrdersID() {
 		return this.productOrdersID;
+	}
+	
+	@Override
+	public Product clone() {
+		try {
+			Product clonedProduct = (Product)super.clone();
+			clonedProduct.productOrdersID = new LinkedHashSet<String>(this.productOrdersID);
+			return clonedProduct;
+		} catch (CloneNotSupportedException e) {
+			throw new AssertionError();
+		}
 	}
 
 	@Override

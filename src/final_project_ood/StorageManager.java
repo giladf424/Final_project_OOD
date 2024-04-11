@@ -3,13 +3,21 @@ package final_project_ood;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class StorageManager {
+public class StorageManager implements Cloneable{
 	private ArrayList<Product> allProducts;
 	private ProductComparator productComparator;
 	
 	public StorageManager() {
 		this.allProducts = new ArrayList<>();
 		this.productComparator = new ProductComparator();
+	}
+	
+	public ArrayList<Product> getAllProducts(){
+		return this.allProducts;
+	}
+	
+	public void setAllProducts(ArrayList<Product> allProducts) {
+		this.allProducts = allProducts;
 	}
 	
 	public boolean createProductWebsite(String name, int costPrice, int sellingPrice, String productID, int weight, boolean regular, boolean express, String dest) {
@@ -64,10 +72,6 @@ public class StorageManager {
 			this.allProducts.sort(this.productComparator);
 		}
 		return true;
-	}
-	
-	public ArrayList<Product> getAllProducts(){
-		return this.allProducts;
 	}
 	
 	public void printProducts(ArrayList<Product> products) {
@@ -142,6 +146,28 @@ public class StorageManager {
 	}
 	// addProduct ( add a product to list , if the product exists but disable we will enable it)
 
+	@Override
+	public StorageManager clone() {
+		try {
+			StorageManager clonedManager = (StorageManager) this.clone();
+			clonedManager.allProducts = new ArrayList<Product>();
+			for(Product product : this.allProducts) {
+				if(product instanceof ProductInStore) {
+					clonedManager.allProducts.add(((ProductInStore)product).clone());
+				}
+				else if(product instanceof ProductWebsite) {
+					clonedManager.allProducts.add(((ProductWebsite)product).clone());
+				}
+				else if(product instanceof ProductWholesalers) {
+					clonedManager.allProducts.add(((ProductWholesalers)product).clone());
+				}
+			}
+			return clonedManager;
+		} catch (Exception e) {
+			throw new AssertionError();
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return "StorageManager [allProducts=" + allProducts + "]";

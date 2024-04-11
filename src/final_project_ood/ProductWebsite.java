@@ -43,6 +43,18 @@ public class ProductWebsite extends Product {
 	public boolean[] getSupportedShippings() {
 		return this.shippingSupport;
 	}
+	
+	@Override
+	public ProductWebsite clone() {
+		try {
+			ProductWebsite clonedProduct = (ProductWebsite)super.clone();
+			clonedProduct.destCountry = this.destCountry;
+			clonedProduct.shippingSupport = this.shippingSupport.clone();
+			return (ProductWebsite)super.clone();
+		} catch (Exception e) {
+			throw new AssertionError();
+		}
+	}
 
 	@Override
 	public String toString() {

@@ -12,6 +12,14 @@ public class OrderManager {
 		allOrders = new LinkedHashSet<>();
 	}
 	
+	public LinkedHashSet<Order> getAllOrders(){
+		return this.allOrders;
+	}
+	
+	public void setAllOrders(LinkedHashSet<Order> allOrders) {
+		this.allOrders = allOrders;
+	}
+	
 // create new order ( gets user input , need to add the order to the list of all orders and the id to product list)
 	public OrderStore createOrder(String orderID, Customer customer, Product product, int quantity) {
 		OrderStore newOrder = new OrderStore(orderID, customer, product, quantity);
