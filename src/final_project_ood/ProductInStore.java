@@ -7,6 +7,14 @@ public class ProductInStore extends Product{
 		this.currency = eCurrency.NIS;
 	}
 	
+	@Override
+	public ProductInStore clone() {
+		try {
+			return (ProductInStore)super.clone();
+		} catch (Exception e) {
+			throw new AssertionError();
+		}
+	}
 	
 	@Override
 	public String toString() {

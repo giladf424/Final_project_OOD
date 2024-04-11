@@ -6,7 +6,6 @@ public class Store {
 	private ShippingManager shippingManager;
 	private StorageManager storageManager;
 	
-	
 	private Store() {
 		this.orderManager = new OrderManager();
 		this.shippingManager = new ShippingManager();
@@ -30,5 +29,28 @@ public class Store {
 	
 	public StorageManager getStorageManager() {
 		return this.storageManager;
+	}
+	
+	public static class storeMemento{
+		private final OrderManager orderManager;
+		private final ShippingManager shippingManager;
+		private final StorageManager storageManager;
+		
+		private storeMemento(OrderManager orderManager, ShippingManager shippingManager, StorageManager storageManager) {
+			this.orderManager = new OrderManager();
+			this.shippingManager = new ShippingManager();
+			this.storageManager = storageManager.clone();
+		}
+		
+	}
+	
+	public storeMemento createMemento() {
+		return new storeMemento(this.orderManager, this.shippingManager, this.storageManager);
+	}
+	
+	public void restoreFromMemento(storeMemento memento) {
+		this.orderManager = memento.orderManager;
+		this.shippingManager = memento.shippingManager;
+		this.storageManager = memento.storageManager;
 	}
 }
