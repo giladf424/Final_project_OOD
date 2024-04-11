@@ -3,6 +3,7 @@ package final_project_ood;
 import java.util.Scanner;
 import java.util.Stack;
 
+import final_project_ood.Product.eProductType;
 import final_project_ood.ShippingManager.eShippingType;
 
 public class Program {
@@ -137,7 +138,7 @@ public class Program {
 		return quantity;
 	}
 	
-	public static int getTypeOfProduct() {
+	public static eProductType getTypeOfProduct() {
 		int userChoice;
 		do {
 			System.out.println("Choose type of product:");
@@ -145,11 +146,19 @@ public class Program {
 			System.out.println("" + STORE_PRODUCTS + " - Sold in Store");
 			System.out.println("" + WHOLESALERS_PRODUCTS + " - Sold to Wholesalers");
 			userChoice = input.nextInt();
-			if(userChoice != WEBSITE_PRODUCTS && userChoice != STORE_PRODUCTS && userChoice != WHOLESALERS_PRODUCTS)
-				System.out.print("No such category. ");
+			switch(userChoice) {
+			case WEBSITE_PRODUCTS:
+				return eProductType.WebsiteProduct;
+			case STORE_PRODUCTS:
+				return eProductType.StoreProduct;
+			case WHOLESALERS_PRODUCTS:
+				return eProductType.WholesalerProduct;
+			default:
+				System.out.print("No such type. ");
+			}
 			
 		}while(userChoice != WEBSITE_PRODUCTS && userChoice != STORE_PRODUCTS && userChoice != WHOLESALERS_PRODUCTS);
-		return userChoice;
+		return eProductType.StoreProduct;
 	}
 
 

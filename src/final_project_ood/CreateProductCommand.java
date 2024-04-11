@@ -15,8 +15,9 @@ public class CreateProductCommand implements ICommand{
 	private eProductType productType;
 	
 	
-	public CreateProductCommand(String name, int costPrice, int sellingPrice, String productID, int weight) {
+	public CreateProductCommand(eProductType productType, String name, int costPrice, int sellingPrice, String productID, int weight) {
 		this.storageManager = Store.getStoreInstance().getStorageManager();
+		this.productType = productType;
 		this.name = name;
 		this.costPrice = costPrice;
 		this.sellingPrice = sellingPrice;
@@ -27,8 +28,9 @@ public class CreateProductCommand implements ICommand{
 		this.destCountry = null;
 	}
 	
-	public CreateProductCommand(String name, int costPrice, int sellingPrice, String productID, int weight, boolean regular, boolean express, String dest) {
+	public CreateProductCommand(eProductType productType, String name, int costPrice, int sellingPrice, String productID, int weight, boolean regular, boolean express, String dest) {
 		this.storageManager = Store.getStoreInstance().getStorageManager();
+		this.productType = productType;
 		this.name = name;
 		this.costPrice = costPrice;
 		this.sellingPrice = sellingPrice;
@@ -41,7 +43,17 @@ public class CreateProductCommand implements ICommand{
 	
 	@Override
 	public void execute() {
-		
+		switch(this.productType) {
+		case WebsiteProduct:
+			this.storageManager.createProductWebsite(name, costPrice, sellingPrice, productID, weight, regularShipping, expressShipping, destCountry);
+			break;
+		case StoreProduct:
+			this.storageManager.createProductStore(name, costPrice, sellingPrice, productID, weight);
+			break;
+		case WholesalerProduct:
+			this.storageManager.createProductStore(name, costPrice, sellingPrice, productID, weight);
+			break;
+		}
 	}
 
 }
