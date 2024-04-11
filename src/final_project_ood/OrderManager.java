@@ -74,7 +74,7 @@ public class OrderManager implements Cloneable {
 			}
 			return clonedManager;
 		} catch (CloneNotSupportedException e) {
-			throw new AssertionError(); // Can't happen
+			throw new AssertionError();
 		}
 	}
 
