@@ -5,7 +5,7 @@ import java.util.LinkedHashSet;
 
 import final_project_ood.ShippingManager.eShippingType;
 
-public class OrderManager {
+public class OrderManager implements Cloneable {
 	private LinkedHashSet<Order> allOrders;
 
 	public OrderManager() {
@@ -26,19 +26,21 @@ public class OrderManager {
 		this.allOrders.add(newOrder);
 		return newOrder;
 	}
-	
-	public OrderShipped createOrder(String orderID, Customer customer, Product product, int quantity, eShippingType type, double shippingFee, ShippingService shippingService) {
-		OrderShipped newOrder = new OrderShipped(orderID, customer, product, quantity, type, shippingFee, shippingService);
+
+	public OrderShipped createOrder(String orderID, Customer customer, Product product, int quantity,
+			eShippingType type, double shippingFee, ShippingService shippingService) {
+		OrderShipped newOrder = new OrderShipped(orderID, customer, product, quantity, type, shippingFee,
+				shippingService);
 		this.allOrders.add(newOrder);
 		return newOrder;
 	}
-	
+
 	public OrderWholeSaler createOrder(String orderID, Customer customer, ProductWholesalers product, int quantity) {
 		OrderWholeSaler newOrder = new OrderWholeSaler(orderID, customer, product, quantity);
 		this.allOrders.add(newOrder);
 		return newOrder;
 	}
-	
+
 	public void removeLastOrder() {
 		Order order = null;
 		for (Iterator<Order> iterator = allOrders.iterator(); iterator.hasNext();) {
@@ -46,14 +48,34 @@ public class OrderManager {
 		}
 		this.allOrders.remove(order);
 	}
-	
+
 	public boolean doesOrderExist(String orderID) {
 		for (Iterator<Order> iterator = allOrders.iterator(); iterator.hasNext();) {
 			Order order = (Order) iterator.next();
-			if(order.getOrderID().equals(orderID))
+			if (order.getOrderID().equals(orderID))
 				return true;
 		}
 		return false;
+	}
+
+	@Override
+	public OrderManager clone() {
+		try {
+			OrderManager clonedManager = (OrderManager) super.clone();
+			clonedManager.allOrders = new LinkedHashSet<>();
+			for (Order order : this.allOrders) {
+				if (order instanceof OrderWholeSaler) {
+					clonedManager.allOrders.add(((OrderWholeSaler) order).clone());
+				} else if (order instanceof OrderShipped) {
+					clonedManager.allOrders.add(((OrderShipped) order).clone());
+				} else if (order instanceof OrderStore) {
+					clonedManager.allOrders.add(((OrderStore) order).clone());
+				}
+			}
+			return clonedManager;
+		} catch (CloneNotSupportedException e) {
+			throw new AssertionError(); // Can't happen
+		}
 	}
 
 }
