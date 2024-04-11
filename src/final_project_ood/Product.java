@@ -17,6 +17,11 @@ public abstract class Product {
 	};
 
 	protected eCurrency currency;
+	
+	public enum eProductType{
+		WebsiteProduct, StoreProduct, WholesalerProduct
+	};
+	
 	protected LinkedHashSet<String> productOrdersID;
 	protected boolean isActive;
 

@@ -1,5 +1,7 @@
 package final_project_ood;
 
+import final_project_ood.Product.eProductType;
+
 public class CreateProductCommand implements ICommand{
 	private StorageManager storageManager;
 	private String name;
@@ -10,6 +12,7 @@ public class CreateProductCommand implements ICommand{
 	private boolean regularShipping;
 	private boolean expressShipping;
 	private String destCountry;
+	private eProductType productType;
 	
 	
 	public CreateProductCommand(String name, int costPrice, int sellingPrice, String productID, int weight) {
