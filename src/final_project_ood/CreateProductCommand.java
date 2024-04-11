@@ -43,8 +43,28 @@ public class CreateProductCommand implements ICommand{
 	
 	@Override
 	public void execute() {
+		if(this.name == null || this.productID == null) {
+			System.out.println("Improper product name or ID.");
+			return;
+		}
+		if(this.storageManager.getProductByID(this.productID) != null) {
+			System.out.println("This product ID is already taken.");
+			return;
+		}
+		if(this.costPrice <= 0 || this.sellingPrice <= 0 || this.sellingPrice < this.costPrice) {
+			System.out.println("Improper prices for product.");
+			return;
+		}
+		if(this.weight <= 0) {
+			System.out.println("Product weight must be have a positive value.");
+			return;
+		}
 		switch(this.productType) {
 		case WebsiteProduct:
+			if(this.destCountry == null) {
+				System.out.println("Destination country invalid.");
+				return;
+			}
 			this.storageManager.createProductWebsite(name, costPrice, sellingPrice, productID, weight, regularShipping, expressShipping, destCountry);
 			break;
 		case StoreProduct:

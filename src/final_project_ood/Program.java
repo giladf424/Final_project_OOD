@@ -42,12 +42,7 @@ public class Program {
 	public static String getOrderID() {
 		String orderID;
 		System.out.println("Enter order ID:");
-		do {
-			orderID = input.nextLine();
-			if(Store.getStoreInstance().getOrderManager().doesOrderExist(orderID))
-				System.out.println("There is already an order with that ID, try again.");
-		} while (Store.getStoreInstance().getOrderManager().doesOrderExist(orderID));
-		
+		orderID = input.nextLine();
 		return orderID;
 	}
 	
@@ -56,7 +51,7 @@ public class Program {
 		int mobileNumber;
 		System.out.println("Enter customer name:");
 		customerName = input.nextLine();
-		System.out.println("Enter customer mobile number:");
+		System.out.println("Enter customer mobile number: (only numbers)");
 		mobileNumber = input.nextInt();
 		Customer customer = new Customer(customerName, mobileNumber);
 		return customer;
@@ -65,37 +60,10 @@ public class Program {
 	public static Product getProduct() {
 		String productID;
 		Product requestedProduct;
-		do {
-			int requestedType = printProductsOfType();
-			System.out.println("Enter product ID:");
-			productID = input.nextLine();
-			requestedProduct = Store.getStoreInstance().getStorageManager().getProductByID(productID);
-			if(requestedProduct == null || !requestedProduct.getIsActive()){
-				System.out.println("No product with this ID.");
-			}
-			else {
-				switch(requestedType){
-				case WEBSITE_PRODUCTS:
-					if(!(requestedProduct instanceof ProductWebsite)) {
-						System.out.println("The product ID entered doesn't belong to a product sold through the website.");
-						productID = null;
-					}
-					break;
-				case STORE_PRODUCTS:
-					if(!(requestedProduct instanceof ProductInStore)) {
-						System.out.println("The product ID entered doesn't belong to a product sold in the store.");
-						productID = null;
-					}
-					break;
-				case WHOLESALERS_PRODUCTS:
-					if(!(requestedProduct instanceof ProductWholesalers)) {
-						System.out.println("The product ID entered doesn't belong to a product sold to wholesalers.");
-						productID = null;
-					}
-					break;
-				}
-			}
-		}while(productID == null);
+		printProductsOfType();
+		System.out.println("Enter product ID:");
+		productID = input.nextLine();
+		requestedProduct = Store.getStoreInstance().getStorageManager().getProductByID(productID);
 		return requestedProduct;
 	}
 	
@@ -128,13 +96,7 @@ public class Program {
 
 	public static int getQuantity(Product product) {
 		System.out.println("Enter product quantity for the order:");
-		int quantity;
-		do {
-			quantity = input.nextInt();
-			if(product.getStock() < quantity) {
-				System.out.println("These isn't enough of " + product.getProductName() + " in stock to make that order, try again.");
-			}
-		} while (product.getStock() < quantity);
+		int quantity = input.nextInt();
 		return quantity;
 	}
 	
@@ -176,38 +138,20 @@ public class Program {
 	}
 	
 	public static int getCostPrice() {
-		int costPrice;
-		do {
-			System.out.println("Enter cost price:");
-			costPrice = input.nextInt();
-			if(costPrice <= 0) {
-				System.out.println("Cost price must be a positive number.");
-			}
-		}while(costPrice <= 0);
+		System.out.println("Enter cost price:");
+		int costPrice = input.nextInt();
 		return costPrice;
 	}
 	
 	public static int getSellingPrice() {
-		int sellingPrice;
-		do {
-			System.out.println("Enter selling price:");
-			sellingPrice = input.nextInt();
-			if(sellingPrice <= 0) {
-				System.out.println("Selling price must be a positive number.");
-			}
-		}while(sellingPrice <= 0);
+		System.out.println("Enter selling price:");
+		int sellingPrice = input.nextInt();
 		return sellingPrice;
 	}
 	
 	public static int getWeight() {
-		int weight;
-		do {
-			System.out.println("Enter product weight:");
-			weight = input.nextInt();
-			if(weight <= 0) {
-				System.out.println("Product weight must be a positive value.");
-			}
-		}while(weight <= 0);
+		System.out.println("Enter product weight:");
+		int weight = input.nextInt();
 		return weight;
 	}
 	
