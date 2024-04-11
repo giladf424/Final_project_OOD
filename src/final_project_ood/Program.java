@@ -161,13 +161,120 @@ public class Program {
 		return eProductType.StoreProduct;
 	}
 
+	public static String getProductName() {
+		String name = new String();
+		System.out.println("Enter product name:");
+		name = input.nextLine();
+		return name;
+	}
+	
+	public static String getProductID() {
+		String id = new String();
+		System.out.println("Enter product ID:");
+		id = input.nextLine();
+		return id;
+	}
+	
+	public static int getCostPrice() {
+		int costPrice;
+		do {
+			System.out.println("Enter cost price:");
+			costPrice = input.nextInt();
+			if(costPrice <= 0) {
+				System.out.println("Cost price must be a positive number.");
+			}
+		}while(costPrice <= 0);
+		return costPrice;
+	}
+	
+	public static int getSellingPrice() {
+		int sellingPrice;
+		do {
+			System.out.println("Enter selling price:");
+			sellingPrice = input.nextInt();
+			if(sellingPrice <= 0) {
+				System.out.println("Selling price must be a positive number.");
+			}
+		}while(sellingPrice <= 0);
+		return sellingPrice;
+	}
+	
+	public static int getWeight() {
+		int weight;
+		do {
+			System.out.println("Enter product weight:");
+			weight = input.nextInt();
+			if(weight <= 0) {
+				System.out.println("Product weight must be a positive value.");
+			}
+		}while(weight <= 0);
+		return weight;
+	}
+	
+	public static boolean getStandardShippingSupport() {
+		boolean standardSupport = true;
+		char value;
+		do {
+			System.out.println("Does the product support standard shipping? (T/F)");
+			value = input.next().charAt(0);
+			switch(value) {
+			case 'T':
+			case 't':
+				standardSupport = true;
+				break;
+			case 'F':
+			case 'f':
+				standardSupport = false;
+				break;
+			default:
+				System.out.println("Unknown character.");
+			}
+		}while(value != 'T' && value != 't' && value != 'F' && value != 'f');
+		return standardSupport;
+	}
+	
+	public static boolean getExpressShippingSupport() {
+		boolean expressSupport = true;
+		char value;
+		do {
+			System.out.println("Does the product support express shipping? (T/F)");
+			value = input.next().charAt(0);
+			switch(value) {
+			case 'T':
+			case 't':
+				expressSupport = true;
+				break;
+			case 'F':
+			case 'f':
+				expressSupport = false;
+				break;
+			default:
+				System.out.println("Unknown character.");
+			}
+		}while(value != 'T' && value != 't' && value != 'F' && value != 'f');
+		return expressSupport;
+	}
+	
+	public static String getDestCountry() {
+		String dest = new String();
+		dest = input.nextLine();
+		return dest;
+	}
 
 	public static void main(String[] args) {
 		CreateOrderCommand cmd = new CreateOrderCommand(getOrderID(), getCustomerInfo(), getProduct(), STORE_PRODUCTS, null);
 		commandStack.add(cmd);
 		UndoOrderCommand cmd1 = new UndoOrderCommand(commandStack.pop());
 		
-		//CreateProductCommand cmdCreateProduct = new CreateProductCommand();
+		CreateProductCommand cmdCreateProduct;
+		eProductType productType = getTypeOfProduct();
+		if(productType == eProductType.WebsiteProduct) {
+			cmdCreateProduct = new CreateProductCommand(productType, getProductName(), getCostPrice(), getSellingPrice(), getProductID(), getWeight(),
+					getStandardShippingSupport(), getExpressShippingSupport(), getDestCountry());
+		}
+		else {
+			cmdCreateProduct = new CreateProductCommand(productType, getProductName(), getCostPrice(), getSellingPrice(), getProductID(), getWeight());
+		}
 		cmd.setOrderID(getOrderID());
 	}
 
