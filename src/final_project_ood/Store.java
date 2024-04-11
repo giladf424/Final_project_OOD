@@ -1,8 +1,5 @@
 package final_project_ood;
 
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-
 public class Store {
 	private static Store storeInstance;
 	private OrderManager orderManager;
