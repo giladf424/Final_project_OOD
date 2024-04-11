@@ -12,8 +12,6 @@ public class OrderManager implements Cloneable {
 		allOrders = new LinkedHashSet<>();
 	}
 
-<<<<<<< HEAD
-=======
 	public LinkedHashSet<Order> getAllOrders() {
 		return this.allOrders;
 	}
@@ -22,7 +20,6 @@ public class OrderManager implements Cloneable {
 		this.allOrders = allOrders;
 	}
 
->>>>>>> bcf65439737112766007503ca1fb06e9bb7232d1
 // create new order ( gets user input , need to add the order to the list of all orders and the id to product list)
 	public OrderStore createOrder(String orderID, Customer customer, Product product, int quantity) {
 		OrderStore newOrder = new OrderStore(orderID, customer, product, quantity);
