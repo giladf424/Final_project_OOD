@@ -10,7 +10,7 @@ public class ProductInStore extends Product{
 	
 	@Override
 	public String toString() {
-		return super.toString();
+		return "Type: " + eProductType.StoreProduct + super.toString();
 	}
 
 }

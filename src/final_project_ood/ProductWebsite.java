@@ -55,7 +55,7 @@ public class ProductWebsite extends Product {
 			}
 			productDesc.append("supported.");
 		}
-		return super.toString() + productDesc.toString();
+		return "Type: " + eProductType.WebsiteProduct + super.toString() + productDesc.toString();
 	}
 	
 	

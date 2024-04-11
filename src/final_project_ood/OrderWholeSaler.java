@@ -13,4 +13,11 @@ public class OrderWholeSaler extends Order{
 		return this.invoiceAccountant;
 	}
 
+	@Override
+	public String toString() {
+		return super.toString() + invoiceAccountant + "]";
+	}
+	
+	
+
 }

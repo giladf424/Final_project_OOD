@@ -25,9 +25,9 @@ public abstract class ShippingService {
 		this.phoneNumber = phoneNumber;
 	}
 	
-	public abstract double calculateStandardtShippingFees(ProductWebsite product);
+	public abstract double calculateStandardShippingFees(ProductWebsite product);
 	
-	public abstract double calculateExpresstShippingFees(ProductWebsite product);
+	public abstract double calculateExpressShippingFees(ProductWebsite product);
 	
 	public double calculateImportTax(String destCountry) {
 		return 20;

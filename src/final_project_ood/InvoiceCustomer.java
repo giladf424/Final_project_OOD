@@ -2,22 +2,22 @@ package final_project_ood;
 
 public class InvoiceCustomer extends Invoice{
 	public static final double TAX = 17.0;
-	private double priceBeforeTax;
+	private double TaxValue;
 
 	public InvoiceCustomer(String productID, String productName, int quantity, int sellingPrice) {
 		super(productID, productName, quantity, sellingPrice);
-		this.setPriceBeforeTax();
+		this.setTaxValue();
 	}
 	
-	private void setPriceBeforeTax() {
-		this.priceBeforeTax = (this.orderCost * 100) / 117;	//calculation
+	private void setTaxValue() {
+		this.TaxValue = (this.orderCost * 17) / 117;	//calculation
 	}
 
 	@Override
 	public String toString() {
-		StringBuffer invoice = new StringBuffer();
-		invoice.append(this.productName + "\n" + this.productID + "\nPrice:	" + this.sellingPrice + "	X	" + this.quantity + "\n");
-		invoice.append("\nBefore Tax:	" + this.priceBeforeTax + "\nTotal:	" + this.orderCost);
+		StringBuffer invoice = new StringBuffer("Invoice for customer: \n");
+		invoice.append("ID: " + productID  + "\t" + productName + "\t Price: " + sellingPrice + " X " + quantity + "\n");
+		invoice.append("Tax: " + TaxValue + "\t Total: " + orderCost);
 		return invoice.toString();
 	}
 

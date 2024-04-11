@@ -11,6 +11,20 @@ public class ShippingManager implements Informed {
 	public ShippingManager() {
 		this.companies = new HashSet<>();
 	}
+	
+	
+
+	public HashSet<ShippingService> getCompanies() {
+		return companies;
+	}
+
+
+
+	public void setCompanies(HashSet<ShippingService> companies) {
+		this.companies = companies;
+	}
+
+
 
 	@Override
 	public CheapestShippingService getInformed(eShippingType type, ProductWebsite product) {
@@ -34,9 +48,9 @@ public class ShippingManager implements Informed {
 	public CheapestShippingService getCheapestStandardShipping(ProductWebsite product) {
 		Iterator<ShippingService> shippingIt = companies.iterator();
 		ShippingService cheapest = shippingIt.next();
-		double min = cheapest.calculateStandardtShippingFees(product);
+		double min = cheapest.calculateStandardShippingFees(product);
 		for (ShippingService company : companies) {
-			double tmp =company.calculateStandardtShippingFees(product);
+			double tmp =company.calculateStandardShippingFees(product);
 			if(tmp < min) {
 				min = tmp;
 				cheapest = company;
@@ -49,9 +63,9 @@ public class ShippingManager implements Informed {
 	public CheapestShippingService getCheapestExpressShipping(ProductWebsite product) {
 		Iterator<ShippingService> shippingIt = companies.iterator();
 		ShippingService cheapest = shippingIt.next();
-		double min = cheapest.calculateExpresstShippingFees(product);
+		double min = cheapest.calculateExpressShippingFees(product);
 		for (ShippingService company : companies) {
-			double tmp =company.calculateExpresstShippingFees(product);
+			double tmp =company.calculateExpressShippingFees(product);
 			if(tmp < min) {
 				min = tmp;
 				cheapest = company;

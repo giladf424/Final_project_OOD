@@ -9,7 +9,7 @@ public class ProductWholesalers extends Product{
 
 	@Override
 	public String toString() {
-		return super.toString();
+		return "Type: " + eProductType.WholesalerProduct + super.toString();
 	}
 	
 	

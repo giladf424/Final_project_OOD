@@ -126,7 +126,7 @@ public abstract class Product {
 	public String toString() {
 		StringBuffer productDesc = new StringBuffer();
 		productDesc
-				.append("Type: " + this.getClass().getSimpleName() + "\t ID: " + this.productID + "\t" + "Name:" + this.productName + "\t" + "Weight: "
+				.append("\t ID: " + this.productID + "\t" + "Name:" + this.productName + "\t" + "Weight: "
 						+ this.productWeight + "kg\n")
 				.append("Cost price: " + this.costPrice + " " + this.currency + "\t Selling price: " + this.sellingPrice
 						+ " " + this.currency + "\t Quantity: " + this.stock + "\n");

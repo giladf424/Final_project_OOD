@@ -16,9 +16,9 @@ public class InvoiceAccountant extends Invoice{
 
 	@Override
 	public String toString() {
-		StringBuffer invoice = new StringBuffer();
-		invoice.append(this.productName + "\n" + this.productID + "\nPrice:	" + this.sellingPrice + "	X	" + this.quantity + "\n");
-		invoice.append("Total:	" + this.orderCost + "\nStore Profit:	" + this.orderProfit);
+		StringBuffer invoice = new StringBuffer("Invoice for accountant: \n");
+		invoice.append("ID: " + productID  + "\t" + productName + "\t Price: " + sellingPrice + " X " + quantity + "\n");
+		invoice.append("Total: " + orderCost + "\t Store Profit: " + orderProfit);
 		return invoice.toString();
 	}
 

@@ -63,6 +63,13 @@ public abstract class Order {
 		Order other = (Order) obj;
 		return Objects.equals(orderID, other.orderID);
 	}
+
+	@Override
+	public String toString() {
+		StringBuffer orderDesc = new StringBuffer();
+		orderDesc.append("Order ID: " + orderID + "\n").append("Product ID: " + productID + "\t Quantity: " + quantity + "\n");
+		return orderDesc.toString() + customer.toString();
+	}
 	
 	
 

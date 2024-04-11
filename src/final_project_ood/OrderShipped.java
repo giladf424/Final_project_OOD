@@ -2,12 +2,13 @@ package final_project_ood;
 
 import final_project_ood.ShippingManager.eShippingType;
 
-public class OrderShipped extends Order{
+public class OrderShipped extends Order {
 	private ShippingService shippingService;
 	private double shippingFees;
 	private eShippingType shippingType;
-	
-	public OrderShipped(String orderID, Customer customer, Product product, int quantity, eShippingType type, double shippingFees, ShippingService shippingService) {
+
+	public OrderShipped(String orderID, Customer customer, Product product, int quantity, eShippingType type,
+			double shippingFees, ShippingService shippingService) {
 		super(orderID, customer, product, quantity);
 		this.shippingType = type;
 		this.shippingFees = shippingFees;
@@ -37,7 +38,15 @@ public class OrderShipped extends Order{
 	public void setShippingType(eShippingType shippingType) {
 		this.shippingType = shippingType;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		StringBuffer orderDesc = new StringBuffer();
+		orderDesc
+				.append("Shipping company: " + shippingService.getClass().getSimpleName() + "\t Type: "
+						+ shippingType.name() + "\t Cost: " + shippingFees + "\n")
+				.append("Contact: " + shippingService.contact + "\t WhatsApp: " + shippingService.phoneNumber);
+		return super.toString() + orderDesc.toString();
+	}
+
 }

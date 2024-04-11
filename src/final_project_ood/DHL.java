@@ -7,7 +7,7 @@ public class DHL extends ShippingService{
 	}
 
 	@Override
-	public double calculateStandardtShippingFees(ProductWebsite product) {
+	public double calculateStandardShippingFees(ProductWebsite product) {
 		double shippingFees = product.sellingPrice;
 		if (shippingFees >= 1000) {
 			shippingFees = 100;
@@ -17,7 +17,7 @@ public class DHL extends ShippingService{
 	}
 
 	@Override
-	public double calculateExpresstShippingFees(ProductWebsite product) {
+	public double calculateExpressShippingFees(ProductWebsite product) {
 		
 		return 100 + calculateImportTax(product.getDestCountry());
 	}

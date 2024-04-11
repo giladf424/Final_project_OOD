@@ -8,13 +8,13 @@ public class FedEx extends ShippingService {
 	}
 
 	@Override
-	public double calculateStandardtShippingFees(ProductWebsite product) {
+	public double calculateStandardShippingFees(ProductWebsite product) {
 		int temp = product.productWeight/10;
 		return temp * 10;
 	}
 
 	@Override
-	public double calculateExpresstShippingFees(ProductWebsite product) {
+	public double calculateExpressShippingFees(ProductWebsite product) {
 		int temp = product.productWeight/10;
 		return temp * 50 + calculateImportTax(product.getDestCountry());
 	}
