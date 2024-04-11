@@ -18,6 +18,7 @@ public class OrderStore extends Order{
 		return this.invoiceAccountant;
 	}
 	
+	@Override
 	public String toString() {
 		return super.toString() + invoiceCustomer.toString() + "\n" + invoiceAccountant.toString();
 	}
