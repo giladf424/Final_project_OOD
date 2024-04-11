@@ -12,14 +12,14 @@ public class StorageManager {
 		this.productComparator = new ProductComparator();
 	}
 	
-	public boolean createProductWebsite(String name, int cost_price, int selling_price, String catalog_number, int weight, boolean regular, boolean express, String dest) {
-		ProductWebsite product = new ProductWebsite(name, cost_price, selling_price, catalog_number, weight, regular, express, dest);
+	public boolean createProductWebsite(String name, int costPrice, int sellingPrice, String productID, int weight, boolean regular, boolean express, String dest) {
+		ProductWebsite product = new ProductWebsite(name, costPrice, sellingPrice, productID, weight, regular, express, dest);
 		if(this.allProducts.contains(product)) {
 			ProductWebsite existingProduct = (ProductWebsite)this.getProductByID(product.productID);
 			existingProduct.setIsActive(true);
 			existingProduct.setProductName(name);
-			existingProduct.setCostPrice(cost_price);
-			existingProduct.setSellingPrice(selling_price);
+			existingProduct.setCostPrice(costPrice);
+			existingProduct.setSellingPrice(sellingPrice);
 			existingProduct.setWeight(weight);
 			existingProduct.setRegularShippingSupport(regular);
 			existingProduct.setExpressShippingSupport(express);

@@ -136,12 +136,29 @@ public class Program {
 		} while (product.getStock() < quantity);
 		return quantity;
 	}
+	
+	public static int getTypeOfProduct() {
+		int userChoice;
+		do {
+			System.out.println("Choose type of product:");
+			System.out.println("" + WEBSITE_PRODUCTS + " - Sold on Website");
+			System.out.println("" + STORE_PRODUCTS + " - Sold in Store");
+			System.out.println("" + WHOLESALERS_PRODUCTS + " - Sold to Wholesalers");
+			userChoice = input.nextInt();
+			if(userChoice != WEBSITE_PRODUCTS && userChoice != STORE_PRODUCTS && userChoice != WHOLESALERS_PRODUCTS)
+				System.out.print("No such category. ");
+			
+		}while(userChoice != WEBSITE_PRODUCTS && userChoice != STORE_PRODUCTS && userChoice != WHOLESALERS_PRODUCTS);
+		return userChoice;
+	}
 
 
 	public static void main(String[] args) {
 		CreateOrderCommand cmd = new CreateOrderCommand(getOrderID(), getCustomerInfo(), getProduct(), STORE_PRODUCTS, null);
 		commandStack.add(cmd);
 		UndoOrderCommand cmd1 = new UndoOrderCommand(commandStack.pop());
+		
+		//CreateProductCommand cmdCreateProduct = new CreateProductCommand();
 		cmd.setOrderID(getOrderID());
 	}
 
