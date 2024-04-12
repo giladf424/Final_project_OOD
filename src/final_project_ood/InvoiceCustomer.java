@@ -16,8 +16,8 @@ public class InvoiceCustomer extends Invoice implements Cloneable {
 	@Override
 	public String toString() {
 		StringBuffer invoice = new StringBuffer("Invoice for customer: \n");
-		invoice.append("ID: " + productID + "\t" + productName + "\t Price: " + sellingPrice + " X " + quantity + "\n");
-		invoice.append("Tax: " + TaxValue + "\t Total: " + orderCost);
+		invoice.append("ID: " + productID + "\t" + productName + "\t Price: " + sellingPrice + " X " + quantity + " units\n");
+		invoice.append("Tax: " + TaxValue + " NIS\t Total: " + orderCost + "NIS");
 		return invoice.toString();
 	}
 
