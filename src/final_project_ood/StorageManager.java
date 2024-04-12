@@ -20,7 +20,7 @@ public class StorageManager implements Cloneable{
 		this.allProducts = allProducts;
 	}
 	
-	public boolean createProductWebsite(String name, int costPrice, int sellingPrice, String productID, int weight, boolean regular, boolean express, String dest) {
+	public ProductWebsite createProductWebsite(String name, int costPrice, int sellingPrice, String productID, int weight, boolean regular, boolean express, String dest) {
 		ProductWebsite product = new ProductWebsite(name, costPrice, sellingPrice, productID, weight, regular, express, dest);
 		if(this.allProducts.contains(product)) {
 			ProductWebsite existingProduct = (ProductWebsite)this.getProductByID(product.productID);
@@ -37,10 +37,10 @@ public class StorageManager implements Cloneable{
 			this.allProducts.add(product);
 			this.allProducts.sort(this.productComparator);
 		}
-		return true;
+		return product;
 	}
 	
-	public boolean createProductStore(String name, int costPrice, int sellingPrice, String productID, int weight) {
+	public ProductInStore createProductStore(String name, int costPrice, int sellingPrice, String productID, int weight) {
 		ProductInStore product = new ProductInStore(name, costPrice, sellingPrice, productID, weight);
 		if(this.allProducts.contains(product)) {
 			ProductInStore existingProduct = (ProductInStore)this.getProductByID(product.productID);
@@ -54,10 +54,10 @@ public class StorageManager implements Cloneable{
 			this.allProducts.add(product);
 			this.allProducts.sort(this.productComparator);
 		}
-		return true;
+		return product;
 	}
 	
-	public boolean createProductWholesalers(String name, int costPrice, int sellingPrice, String productID, int weight) {
+	public ProductWholesalers createProductWholesalers(String name, int costPrice, int sellingPrice, String productID, int weight) {
 		ProductWholesalers product = new ProductWholesalers(name, costPrice, sellingPrice, productID, weight);
 		if(this.allProducts.contains(product)) {
 			ProductWholesalers existingProduct = (ProductWholesalers)this.getProductByID(product.productID);
@@ -71,7 +71,7 @@ public class StorageManager implements Cloneable{
 			this.allProducts.add(product);
 			this.allProducts.sort(this.productComparator);
 		}
-		return true;
+		return product;
 	}
 	
 	public void printProducts(ArrayList<Product> products) {
