@@ -52,8 +52,6 @@ public class CreateOrderCommand extends Informer implements ICommand{
 			System.out.println("These isn't enough of " + product.getProductName() + " in stock to make that order, try again.");
 			return;
 		}
-		this.storageManager.updateQuantity(this.product, this.quantity);
-		this.storageManager.addOrderToProduct(this.product, this.orderID);
 		if(!(product instanceof ProductWebsite)) {
 			this.orderManager.createOrder(this.orderID, this.customer, this.product, this.quantity);
 		}
@@ -65,7 +63,11 @@ public class CreateOrderCommand extends Informer implements ICommand{
 			CheapestShippingService cheapestShipping = inform((ProductWebsite)product, this.shippingType);
 			this.orderManager.createOrder(this.orderID, this.customer, this.product, this.quantity,
 					this.shippingType, cheapestShipping.getPrice(), cheapestShipping.getShippingService());
+			if(this.shippingType == eShippingType.Standard)
+				System.out.println("Please be aware that the store doesn't handle shipping taxes at this moment.");
 		}
+		this.storageManager.updateQuantity(this.product, this.quantity);
+		this.storageManager.addOrderToProduct(this.product, this.orderID);
 	}
 	
 	
