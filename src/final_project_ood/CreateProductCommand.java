@@ -71,7 +71,7 @@ public class CreateProductCommand implements ICommand{
 			this.storageManager.createProductStore(name, costPrice, sellingPrice, productID, weight);
 			break;
 		case WholesalerProduct:
-			this.storageManager.createProductStore(name, costPrice, sellingPrice, productID, weight);
+			this.storageManager.createProductWholesalers(name, costPrice, sellingPrice, productID, weight);
 			break;
 		}
 	}
