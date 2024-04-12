@@ -52,6 +52,9 @@ public class SystemTestCommand implements ICommand{
 		this.orderManager.createOrder("NC4UI-3N4H", customer5, product6, 100);
 		this.orderManager.createOrder("NC4UI-I6J5", customer6, product6, 20);
 		
+		this.shippingManager.addShippingCompany(new DHL("Bob", 84969383));
+		this.shippingManager.addShippingCompany(new FedEx("Jim", 48453957));
+		
 		CheapestShippingService shipping1 = this.shippingManager.getInformed(eShippingType.Standard, product7);
 		this.orderManager.createOrder("NVHD8-OPE34", customer1, product7, 1, eShippingType.Standard, shipping1.getPrice(), shipping1.getShippingService());
 		this.orderManager.createOrder("NVHD8-JWEUE", customer2, product7, 2, eShippingType.Standard, shipping1.getPrice(), shipping1.getShippingService());
@@ -67,6 +70,9 @@ public class SystemTestCommand implements ICommand{
 		this.orderManager.createOrder("JDNF3-KD3I5", customer1, product9, 1, eShippingType.Express, shipping3.getPrice(), shipping3.getShippingService());
 		this.orderManager.createOrder("JDNF3-JENRC", customer2, product9, 1, eShippingType.Express, shipping3.getPrice(), shipping3.getShippingService());
 		this.orderManager.createOrder("JDNF3-4958C", customer3, product9, 3, eShippingType.Express, shipping3.getPrice(), shipping3.getShippingService());
+		
+		System.out.println("Done creating a fake system.");
 	}
+	
 
 }

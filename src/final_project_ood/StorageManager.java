@@ -74,13 +74,6 @@ public class StorageManager implements Cloneable{
 		return product;
 	}
 	
-	public void printProducts(ArrayList<Product> products) {
-		for (Iterator<Product> iterator = products.iterator(); iterator.hasNext();) {
-			Product product = (Product) iterator.next();
-			System.out.println(product.toString());
-		}
-	}
-	
 	public ArrayList<Product> getAllWebsiteProducts(){
 		ArrayList<Product> allWebsiteProducts = new ArrayList<>();
 		for (Iterator<Product> iterator = allProducts.iterator(); iterator.hasNext();) {
@@ -143,6 +136,11 @@ public class StorageManager implements Cloneable{
 	public void setProductActivity(String productID, boolean value) {
 		Product product = this.getProductByID(productID);
 		product.setIsActive(value);
+	}
+	
+	public void setProductStock(String productID, int quantity) {
+		Product product = this.getProductByID(productID);
+		product.setStock(quantity);
 	}
 	// addProduct ( add a product to list , if the product exists but disable we will enable it)
 
