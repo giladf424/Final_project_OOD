@@ -26,6 +26,14 @@ public class CreateOrderCommand extends Informer implements ICommand{
 		this.shippingType = shippingType;
 	}
 	
+	public Customer getCustomer() {
+		return this.customer;
+	}
+	
+	public String getOrderID() {
+		return this.orderID;
+	}
+	
 	public Product getProduct() {
 		return product;
 	}
@@ -50,6 +58,10 @@ public class CreateOrderCommand extends Informer implements ICommand{
 		}
 		if(this.product.getStock() < this.quantity) {
 			System.out.println("These isn't enough of " + product.getProductName() + " in stock to make that order, try again.");
+			return;
+		}
+		if((this.product instanceof ProductWebsite) && !((ProductWebsite) this.product).getSupportedShippings()[this.shippingType.ordinal()]) {
+			System.out.println("This product doesn't support this shipping type.");
 			return;
 		}
 		if(!(product instanceof ProductWebsite)) {

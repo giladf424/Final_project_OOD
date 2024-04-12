@@ -3,7 +3,7 @@ package final_project_ood;
 import java.util.HashSet;
 import java.util.Iterator;
 
-public class ShippingManager implements Informed {
+public class ShippingManager implements Informed, Cloneable {
 	private HashSet<ShippingService> companies;
 
 	public enum eShippingType {

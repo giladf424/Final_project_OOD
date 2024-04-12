@@ -16,12 +16,15 @@ public class Program {
 	private static Stack<CreateOrderCommand> commandStack = new Stack<>();
 	
 	public static eShippingType getShippingType(Product product) {
+		if(!(product instanceof ProductWebsite)) {
+			return eShippingType.Standard;
+		}
 		ProductWebsite webProduct = (ProductWebsite)product;
 		System.out.println("This product supports the following shipping types:");
 		for(int i = 0; i < eShippingType.NofTypes.ordinal(); i++) {
 			System.out.print("" + eShippingType.values()[i] + " shipping: ");
 			if(!webProduct.getSupportedShippings()[i]) {
-				System.out.println("not ");
+				System.out.print("not ");
 			}
 			System.out.println("supported.");
 		}
@@ -32,7 +35,7 @@ public class Program {
 			typeChosen = true;
 			System.out.println("Choose desired shipping type:");
 			try {
-				type = eShippingType.valueOf(input.next());
+				type = eShippingType.valueOf(input.nextLine());
 			} catch (Exception e) {
 				System.out.println("Unknown shipping type.");
 				typeChosen = false;
@@ -44,7 +47,7 @@ public class Program {
 	public static String getOrderID() {
 		String orderID;
 		System.out.println("Enter order ID:");
-		orderID = input.next();
+		orderID = input.nextLine();
 		return orderID;
 	}
 	
@@ -55,6 +58,7 @@ public class Program {
 		customerName = input.nextLine();
 		System.out.println("Enter customer mobile number: (only numbers)");
 		mobileNumber = input.nextInt();
+		input.nextLine();
 		Customer customer = new Customer(customerName, mobileNumber);
 		return customer;
 	}
@@ -78,9 +82,9 @@ public class Program {
 			System.out.println("There are no products of that type.");
 			return null;
 		}
-		//printProductsOfType();
+		printProducts(products);
 		System.out.println("Enter product ID:");
-		productID = input.next();
+		productID = input.nextLine();
 		requestedProduct = Store.getStoreInstance().getStorageManager().getProductByID(productID);
 		return requestedProduct;
 	}
@@ -124,9 +128,10 @@ public class Program {
 		}
 	}
 
-	public static int getQuantity(Product product) {
-		System.out.println("Enter product quantity for the order:");
+	public static int getQuantity() {
+		System.out.println("Enter product quantity:");
 		int quantity = input.nextInt();
+		input.nextLine();
 		return quantity;
 	}
 	
@@ -138,6 +143,7 @@ public class Program {
 			System.out.println("" + STORE_PRODUCTS + " - Sold in Store");
 			System.out.println("" + WHOLESALERS_PRODUCTS + " - Sold to Wholesalers");
 			userChoice = input.nextInt();
+			input.nextLine();
 			switch(userChoice) {
 			case WEBSITE_PRODUCTS:
 				return eProductType.WebsiteProduct;
@@ -156,7 +162,7 @@ public class Program {
 	public static String getProductName() {
 		String name = new String();
 		System.out.println("Enter product name:");
-		name = input.next();
+		name = input.nextLine();
 		return name;
 	}
 	
@@ -170,18 +176,21 @@ public class Program {
 	public static int getCostPrice() {
 		System.out.println("Enter cost price:");
 		int costPrice = input.nextInt();
+		input.nextLine();
 		return costPrice;
 	}
 	
 	public static int getSellingPrice() {
 		System.out.println("Enter selling price:");
 		int sellingPrice = input.nextInt();
+		input.nextLine();
 		return sellingPrice;
 	}
 	
 	public static int getWeight() {
 		System.out.println("Enter product weight:");
 		int weight = input.nextInt();
+		input.nextLine();
 		return weight;
 	}
 	
@@ -190,7 +199,7 @@ public class Program {
 		char value;
 		do {
 			System.out.println("Does the product support standard shipping? (T/F)");
-			value = input.next().charAt(0);
+			value = input.nextLine().charAt(0);
 			switch(value) {
 			case 'T':
 			case 't':
@@ -212,7 +221,7 @@ public class Program {
 		char value;
 		do {
 			System.out.println("Does the product support express shipping? (T/F)");
-			value = input.next().charAt(0);
+			value = input.nextLine().charAt(0);
 			switch(value) {
 			case 'T':
 			case 't':
@@ -232,7 +241,7 @@ public class Program {
 	public static String getDestCountry() {
 		String dest = new String();
 		System.out.println("Enter the destination country:");
-		dest = input.next();
+		dest = input.nextLine();
 		return dest;
 	}
 
@@ -252,34 +261,55 @@ public class Program {
 		System.out.println("E/e - Exit the System.");
 	}
 	
+	public static void initializeShippingCompanies() {
+		Store.getStoreInstance().getShippingManager().addShippingCompany(new DHL("Bob", 84969383));
+		Store.getStoreInstance().getShippingManager().addShippingCompany(new FedEx("Jim", 48453957));
+	}
+	
 	public static void main(String[] args) {
 		String userChoice = new String();
-		ICommand cmd;
+		ICommand cmd = null;
+		Product product = null;
 		System.out.println("Welcome to our store system!");
+		initializeShippingCompanies();
 		do {
 			printMenu();
-			userChoice = input.next().substring(0, 1);
+			userChoice = (input.next() + "\0").substring(0, 2).trim();
+			input.nextLine();
+			System.out.println();
 			switch(userChoice) {
 			case "1":
-				cmd = new SystemTestCommand();
-				cmd.execute();
-				System.out.println("Action complete.");
+				menuCase1(cmd);
 				break;
 			case "2":
-				eProductType type = getTypeOfProduct();
-				if(type.ordinal() == eProductType.WebsiteProduct.ordinal()) {
-					cmd = new CreateProductCommand(type, getProductName(), getCostPrice(), getSellingPrice(), getProductID(), getWeight(), getStandardShippingSupport(), getExpressShippingSupport(), getDestCountry());
-				}
-				else {
-					cmd = new CreateProductCommand(type, getProductName(), getCostPrice(), getSellingPrice(), getProductID(), getWeight());
-				}
-				cmd.execute();
-				System.out.println("Action complete.");
+				menuCase2(cmd);
 				break;
 			case "3":
-				cmd = new RemoveProductCommand(getProduct());
-				cmd.execute();
-				System.out.println("Action complete.");
+				menuCase3(cmd, product);
+				break;
+			case "4":
+				menuCase4(cmd, product);
+				break;
+			case "5":
+				menuCase5(cmd, product);
+				break;
+			case "6":
+				menuCase6(cmd);
+				break;
+			case "7":
+				menuCase7(cmd, product);
+				break;
+			case "8":
+				menuCase8(cmd);
+				break;
+			case "9":
+				menuCase9(cmd, product);
+				break;
+			case "10":
+				menuCase10(cmd);
+				break;
+			case "11":
+				menuCase11(cmd);
 				break;
 			case "E":
 			case "e":
@@ -289,19 +319,118 @@ public class Program {
 				System.out.println("Unknown input detected. Try again.");
 			}
 		}while(!userChoice.equals("E") && !userChoice.equals("e"));
-		/*CreateOrderCommand cmd = new CreateOrderCommand(getOrderID(), getCustomerInfo(), getProduct(), STORE_PRODUCTS, null);
-		commandStack.add(cmd);
-		UndoOrderCommand cmd1 = new UndoOrderCommand(commandStack.pop());
-		
-		CreateProductCommand cmdCreateProduct;
-		eProductType productType = getTypeOfProduct();
-		if(productType == eProductType.WebsiteProduct) {
-			cmdCreateProduct = new CreateProductCommand(productType, getProductName(), getCostPrice(), getSellingPrice(), getProductID(), getWeight(),
-					getStandardShippingSupport(), getExpressShippingSupport(), getDestCountry());
+	}
+	
+	public static void menuCase1(ICommand cmd) {
+		cmd = new SystemTestCommand();
+		cmd.execute();
+		System.out.println("Action complete.\n");
+	}
+	
+	public static void menuCase2(ICommand cmd) {
+		eProductType type = getTypeOfProduct();
+		if(type.ordinal() == eProductType.WebsiteProduct.ordinal()) {
+			cmd = new CreateProductCommand(type, getProductName(), getCostPrice(), getSellingPrice(), getProductID(), getWeight(), getStandardShippingSupport(), getExpressShippingSupport(), getDestCountry());
 		}
 		else {
-			cmdCreateProduct = new CreateProductCommand(productType, getProductName(), getCostPrice(), getSellingPrice(), getProductID(), getWeight());
-		}*/
+			cmd = new CreateProductCommand(type, getProductName(), getCostPrice(), getSellingPrice(), getProductID(), getWeight());
+		}
+		cmd.execute();
+		System.out.println("Action complete.\n");
 	}
 
+	public static void menuCase3(ICommand cmd, Product product) {
+		product = getProduct();
+		if(product == null) {
+			System.out.println("A product with this ID doesn't exist.");
+		}
+		else {
+			cmd = new RemoveProductCommand(product);
+			cmd.execute();
+		}
+		System.out.println("Action complete.\n");
+	}
+
+	public static void menuCase4(ICommand cmd, Product product) {
+		product = getProduct();
+		if(product != null) {
+			cmd = new UpdateQuantityCommand(product, getQuantity());
+			cmd.execute();
+		}
+		else {
+			System.out.println("A product with this ID doesn't exist.");
+		}
+		System.out.println("Action complete.\n");
+	}
+	
+	public static void menuCase5(ICommand cmd, Product product) {
+		product = getProduct();
+		if(product != null) {
+			cmd = new CreateOrderCommand(getOrderID(), getCustomerInfo(), product, getQuantity(), getShippingType(product));
+			cmd.execute();
+			commandStack.push((CreateOrderCommand)cmd);
+		}
+		else {
+			System.out.println("A product with this ID doesn't exist");
+		}
+		System.out.println("Action complete.\n");
+	}
+	
+	public static void menuCase6(ICommand cmd) {
+		if(commandStack.isEmpty()) {
+			System.out.println("There aren't any orders to undo.");
+		}
+		else {
+			cmd = new UndoOrderCommand(commandStack.pop());
+			cmd.execute();
+		}
+		System.out.println("Action complete.\n");
+	}
+
+	public static void menuCase7(ICommand cmd, Product product) {
+		product = getProduct();
+		if(product != null) {
+			cmd = new PrintProductCommand(product.getProductID());
+			cmd.execute();
+		}
+		else {
+			System.out.println("A product with this ID doesn't exist");
+		}
+		System.out.println("Action complete.\n");
+	}
+	
+	public static void menuCase8(ICommand cmd) {
+		if(Store.getStoreInstance().getStorageManager().getAllProducts().isEmpty()) {
+			System.out.println("There aren't any products in the store.");
+		}
+		else {
+			cmd = new PrintAllProductsCommand();
+			cmd.execute();
+		}
+		System.out.println("Action complete.\n");
+	}
+	
+	public static void menuCase9(ICommand cmd, Product product) {
+		product = getProduct();
+		if(product != null) {
+			cmd = new PrintOrdersForProductCommand(product.getProductID());
+			cmd.execute();
+		}
+		else {
+			System.out.println("A product with this ID doesn't exist");
+		}
+		System.out.println("Action complete.\n");
+	}
+	
+	public static void menuCase10(ICommand cmd) {
+		cmd = new BackupCommand();
+		cmd.execute();
+		System.out.println("Action complete.\n");
+	}
+	
+	public static void menuCase11(ICommand cmd) {
+		cmd = new RestoreCommand();
+		cmd.execute();
+		System.out.println("Action complete.\n");
+	}
 }

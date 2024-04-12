@@ -13,6 +13,13 @@ public class UpdateQuantityCommand implements ICommand {
 	
 	@Override
 	public void execute() {
+		if(this.product == null) {
+			System.out.println("This product doesn't exist.");
+			return;
+		}
+		if(this.quantity < 0) {
+			System.out.println("Quantity can't be a negative value.");
+		}
 		this.storageManager.addQuantity(this.product, this.quantity);
 	}
 

@@ -147,7 +147,7 @@ public class StorageManager implements Cloneable{
 	@Override
 	public StorageManager clone() {
 		try {
-			StorageManager clonedManager = (StorageManager) this.clone();
+			StorageManager clonedManager = (StorageManager) super.clone();
 			clonedManager.allProducts = new ArrayList<Product>();
 			for(Product product : this.allProducts) {
 				if(product instanceof ProductInStore) {
