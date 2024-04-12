@@ -231,6 +231,7 @@ public class Program {
 	
 	public static String getDestCountry() {
 		String dest = new String();
+		System.out.println("Enter the destination country:");
 		dest = input.next();
 		return dest;
 	}
@@ -274,11 +275,6 @@ public class Program {
 				}
 				cmd.execute();
 				System.out.println("Action complete.");
-				printProducts(Store.getStoreInstance().getStorageManager().getAllInStoreProducts());
-				System.out.println();
-				printProducts(Store.getStoreInstance().getStorageManager().getAllWholesalersProducts());
-				System.out.println();
-				printProducts(Store.getStoreInstance().getStorageManager().getAllProducts());
 				break;
 			case "3":
 				cmd = new RemoveProductCommand(getProduct());
