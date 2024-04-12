@@ -100,6 +100,10 @@ public abstract class Product implements Cloneable{
 	public void setWeight(int weight) {
 		this.productWeight = weight;
 	}
+	
+	public eCurrency getCurrency() {
+		return currency;
+	}
 
 	public LinkedHashSet<String> getProductOrdersID() {
 		return this.productOrdersID;

@@ -25,12 +25,12 @@ public class PrintOrdersForProductCommand implements ICommand{
 			System.out.println("The product you chose isn't available in the store anymore.");
 		}
 		System.out.println("This is the list of all orders of the product you chose:");
-		for (Iterator<String> iterator = product.productOrdersID.iterator(); iterator.hasNext();) {
+		for (Iterator<String> iterator = product.getProductOrdersID().iterator(); iterator.hasNext();) {
 			String orderID = (String) iterator.next();
 			Order order = orderManager.getOrderByID(orderID);
 			if (order != null) {
 				System.out.println(order.toString());
-				profit = orderManager.calculateOrderProfit(order, product.sellingPrice, product.costPrice, product.currency);
+				profit = orderManager.calculateOrderProfit(order, product.getSellingPrice(), product.getCostPrice(), product.getCurrency());
 				totalProfit += profit;
 				System.out.println("The profit from this order is: " + profit + " NIS");
 			}

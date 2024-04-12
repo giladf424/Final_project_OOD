@@ -17,17 +17,17 @@ public class PrintProductCommand implements ICommand {
 	public void execute() {
 		int profit = 0;
 		Product product = storageManager.getProductByID(productId);
-		if(product == null || product.getIsActive() == false) {
+		if(product == null || !product.getIsActive()) {
 			System.out.println("No product with this ID.");
 			return;
 		}
 		System.out.println(product.toString());
-		for (Iterator<String> iterator = product.productOrdersID.iterator(); iterator.hasNext();) {
+		for (Iterator<String> iterator = product.getProductOrdersID().iterator(); iterator.hasNext();) {
 			String orderID = (String) iterator.next();
 			Order order = orderManager.getOrderByID(orderID);
 			if (order != null) {
 				System.out.println(order.toString());
-				profit += orderManager.calculateOrderProfit(order, product.sellingPrice, product.costPrice, product.currency);
+				profit += orderManager.calculateOrderProfit(order, product.getSellingPrice(), product.getCostPrice(), product.getCurrency());
 			}
 		}
 		System.out.println("Total profit from product's orders: " + profit + " NIS");
