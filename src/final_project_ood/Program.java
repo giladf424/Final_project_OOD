@@ -152,7 +152,7 @@ public class Program {
 			case WHOLESALERS_PRODUCTS:
 				return eProductType.WholesalerProduct;
 			default:
-				System.out.print("No such type. ");
+				System.out.println("No such type. ");
 			}
 			
 		}while(userChoice != WEBSITE_PRODUCTS && userChoice != STORE_PRODUCTS && userChoice != WHOLESALERS_PRODUCTS);
