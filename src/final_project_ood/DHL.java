@@ -8,7 +8,7 @@ public class DHL extends ShippingService implements Cloneable {
 
 	@Override
 	public double calculateStandardShippingFees(ProductWebsite product) {
-		double shippingFees = product.sellingPrice;
+		double shippingFees = product.getSellingPrice();
 		if (shippingFees >= 1000) {
 			shippingFees = 100;
 		} else
