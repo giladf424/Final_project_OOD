@@ -25,13 +25,6 @@ public class StorageManager implements Cloneable{
 		if(this.allProducts.contains(product)) {
 			ProductWebsite existingProduct = (ProductWebsite)this.getProductByID(product.productID);
 			existingProduct.setIsActive(true);
-			existingProduct.setProductName(name);
-			existingProduct.setCostPrice(costPrice);
-			existingProduct.setSellingPrice(sellingPrice);
-			existingProduct.setWeight(weight);
-			existingProduct.setRegularShippingSupport(regular);
-			existingProduct.setExpressShippingSupport(express);
-			existingProduct.setDestCountry(dest);
 		}
 		else {
 			this.allProducts.add(product);
@@ -45,10 +38,6 @@ public class StorageManager implements Cloneable{
 		if(this.allProducts.contains(product)) {
 			ProductInStore existingProduct = (ProductInStore)this.getProductByID(product.productID);
 			existingProduct.setIsActive(true);
-			existingProduct.setProductName(name);
-			existingProduct.setCostPrice(costPrice);
-			existingProduct.setSellingPrice(sellingPrice);
-			existingProduct.setWeight(weight);
 		}
 		else {
 			this.allProducts.add(product);
@@ -62,10 +51,6 @@ public class StorageManager implements Cloneable{
 		if(this.allProducts.contains(product)) {
 			ProductWholesalers existingProduct = (ProductWholesalers)this.getProductByID(product.productID);
 			existingProduct.setIsActive(true);
-			existingProduct.setProductName(name);
-			existingProduct.setCostPrice(costPrice);
-			existingProduct.setSellingPrice(sellingPrice);
-			existingProduct.setWeight(weight);
 		}
 		else {
 			this.allProducts.add(product);

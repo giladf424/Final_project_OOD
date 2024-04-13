@@ -330,23 +330,11 @@ public class Program {
 	public static void menuCase2(ICommand cmd) {
 		eProductType type = getTypeOfProduct();
 		String productID = getProductID();
-		Product product = Store.getStoreInstance().getStorageManager().getProductByID(productID);
-		if(product != null && !product.getIsActive()) {
-			System.out.println("A product with this ID already exists in the system. Making it available again.");
-			if(type.ordinal() == eProductType.WebsiteProduct.ordinal()) {
-				cmd = new CreateProductCommand(type, "tmp", 1, 2, productID, 1, true, true, "tmp");
-			}
-			else {
-				cmd = new CreateProductCommand(type, "tmp", 1, 2, productID, 1);
-			}
+		if(type.ordinal() == eProductType.WebsiteProduct.ordinal()) {
+			cmd = new CreateProductCommand(type, getProductName(), getCostPrice(), getSellingPrice(), productID, getWeight(), getStandardShippingSupport(), getExpressShippingSupport(), getDestCountry());
 		}
 		else {
-			if(type.ordinal() == eProductType.WebsiteProduct.ordinal()) {
-				cmd = new CreateProductCommand(type, getProductName(), getCostPrice(), getSellingPrice(), productID, getWeight(), getStandardShippingSupport(), getExpressShippingSupport(), getDestCountry());
-			}
-			else {
-				cmd = new CreateProductCommand(type, getProductName(), getCostPrice(), getSellingPrice(), productID, getWeight());
-			}
+			cmd = new CreateProductCommand(type, getProductName(), getCostPrice(), getSellingPrice(), productID, getWeight());
 		}
 		cmd.execute();
 		System.out.println("Action complete.\n");

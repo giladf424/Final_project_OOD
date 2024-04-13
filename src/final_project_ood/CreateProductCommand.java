@@ -59,6 +59,9 @@ public class CreateProductCommand implements ICommand{
 			System.out.println("Product weight must be have a positive value.");
 			return;
 		}
+		if(this.storageManager.getProductByID(this.productID) != null && !this.storageManager.getProductByID(this.productID).getIsActive()) {
+			System.out.println("A product with this ID already exists in the system. Making it available again.");
+		}
 		switch(this.productType) {
 		case WebsiteProduct:
 			if(this.destCountry == null) {
