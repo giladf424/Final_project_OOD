@@ -44,7 +44,7 @@ public class OrderShipped extends Order implements Cloneable {
 		StringBuffer orderDesc = new StringBuffer();
 		orderDesc
 				.append("Shipping company: " + shippingService.getClass().getSimpleName() + "\t Type: "
-						+ shippingType.name() + "\t Cost: " + shippingFees + "\n")
+						+ shippingType.name() + "\t Cost: " + shippingFees + " USD\n")
 				.append("Contact: " + shippingService.contact + "\t WhatsApp: " + shippingService.phoneNumber);
 		return super.toString() + orderDesc.toString();
 	}

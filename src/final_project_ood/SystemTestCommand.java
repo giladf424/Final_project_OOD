@@ -139,7 +139,7 @@ public class SystemTestCommand implements ICommand{
 		}
 		
 		int totalProfit = profit - spendings;
-		System.out.println("The store total profit is: (takes into account existing stock value) " + totalProfit);
+		System.out.println("The store total profit is: (takes into account existing stock value) " + totalProfit + " NIS\n");
 	}
 	
 
