@@ -3,7 +3,7 @@ package final_project_ood;
 import final_project_ood.ShippingManager.eShippingType;
 
 public abstract class Informer {
-	private Informed shippingManager;
+	protected Informed shippingManager;
 	
 	public Informer() {
 		this.shippingManager = Store.getStoreInstance().getShippingManager();

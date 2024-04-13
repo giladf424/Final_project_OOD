@@ -33,7 +33,7 @@ public class Program {
 		boolean typeChosen;
 		do {
 			typeChosen = true;
-			System.out.println("Choose desired shipping type:");
+			System.out.println("Type in the desired shipping type: (Exact string)");
 			try {
 				type = eShippingType.valueOf(input.nextLine());
 			} catch (Exception e) {

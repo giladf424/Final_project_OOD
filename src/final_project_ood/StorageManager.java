@@ -101,7 +101,6 @@ public class StorageManager implements Cloneable{
 		return null;
 	}
 	
-	// updateQuantity (product)
 	public void updateQuantity(Product product, int quantity) {
 		int newStock = product.getStock() - quantity;
 		product.setStock(newStock);
@@ -116,8 +115,6 @@ public class StorageManager implements Cloneable{
 		product.getProductOrdersID().add(orderID);
 	}
 	
-	
-	// enableDisableProduct (this will implement action 4.3 in the menu to remove product)
 	public void setProductActivity(String productID, boolean value) {
 		Product product = this.getProductByID(productID);
 		product.setIsActive(value);
@@ -127,7 +124,6 @@ public class StorageManager implements Cloneable{
 		Product product = this.getProductByID(productID);
 		product.setStock(quantity);
 	}
-	// addProduct ( add a product to list , if the product exists but disable we will enable it)
 
 	@Override
 	public StorageManager clone() {
@@ -155,7 +151,5 @@ public class StorageManager implements Cloneable{
 	public String toString() {
 		return "StorageManager [allProducts=" + allProducts + "]";
 	}
-	
-	// 
 
 }
