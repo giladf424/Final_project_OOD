@@ -35,12 +35,10 @@ public class ShippingManager implements Informed, Cloneable {
 
 	}
 
-	// add method , to add a new shipping company.
 	public boolean addShippingCompany(ShippingService company) {
 		return companies.add(company);
 	}
 
-	// get the cheapest standard shipping cost
 	public CheapestShippingService getCheapestStandardShipping(ProductWebsite product) {
 		Iterator<ShippingService> shippingIt = companies.iterator();
 		ShippingService cheapest = shippingIt.next();
@@ -55,7 +53,6 @@ public class ShippingManager implements Informed, Cloneable {
 		return new CheapestShippingService(min, cheapest);
 	}
 
-	// get the cheapest express shipping cost
 	public CheapestShippingService getCheapestExpressShipping(ProductWebsite product) {
 		Iterator<ShippingService> shippingIt = companies.iterator();
 		ShippingService cheapest = shippingIt.next();

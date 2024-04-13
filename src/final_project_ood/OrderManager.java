@@ -21,7 +21,6 @@ public class OrderManager implements Cloneable {
 		this.allOrders = allOrders;
 	}
 
-// create new order ( gets user input , need to add the order to the list of all orders and the id to product list)
 	public OrderStore createOrder(String orderID, Customer customer, Product product, int quantity) {
 		OrderStore newOrder = new OrderStore(orderID, customer, product, quantity);
 		this.allOrders.add(newOrder);

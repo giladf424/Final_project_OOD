@@ -2,7 +2,7 @@ package final_project_ood;
 
 public class FedEx extends ShippingService implements Cloneable {
 
-	protected FedEx(String contact, int phoneNumber) {
+	public FedEx(String contact, int phoneNumber) {
 		super(contact, phoneNumber);
 	}
 

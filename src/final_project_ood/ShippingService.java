@@ -4,7 +4,7 @@ public abstract class ShippingService implements Cloneable {
 	protected String contact;
 	protected int phoneNumber;
 
-	protected ShippingService(String contact, int phoneNumber) {
+	public ShippingService(String contact, int phoneNumber) {
 		this.contact = contact;
 		this.phoneNumber = phoneNumber;
 	}

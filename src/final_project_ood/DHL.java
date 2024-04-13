@@ -2,7 +2,7 @@ package final_project_ood;
 
 public class DHL extends ShippingService implements Cloneable {
 
-	protected DHL(String contact, int phoneNumber) {
+	public DHL(String contact, int phoneNumber) {
 		super(contact, phoneNumber);
 	}
 
